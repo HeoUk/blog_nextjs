@@ -1,6 +1,7 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-const uri =
-  'mongodb+srv://Cluster34912:qkrtkdgus@cluster34912.qd9uvtg.mongodb.net/?retryWrites=true&w=majority';
+import { getClient, createCollection } from '@/app/_db/mongodb';
+
+// const uri =
+//   'mongodb+srv://Cluster34912:qkrtkdgus@cluster34912.qd9uvtg.mongodb.net/?retryWrites=true&w=majority';
 
 export type CardType = {
   id: string;
@@ -9,24 +10,10 @@ export type CardType = {
 };
 
 async function findAll(): Promise<CardType[]> {
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-
+  //
+  const client = await getClient();
   try {
     await client.connect();
-
-    var query = { age: '13' };
-
-    // const result = await client
-    //   .db('yalloo')
-    //   .collection('users')
-    //   .find<ResponseType>(query)
-    //   .toArray();
 
     const result = await client
       .db('yalloo')
@@ -42,13 +29,7 @@ async function findAll(): Promise<CardType[]> {
 }
 
 async function findById(id: string): Promise<CardType> {
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
+  const client = await getClient();
 
   try {
     await client.connect();
@@ -69,13 +50,7 @@ async function findById(id: string): Promise<CardType> {
 }
 
 async function update(id: string, text: string): Promise<void> {
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
+  const client = await getClient();
 
   try {
     await client.connect();
@@ -83,7 +58,7 @@ async function update(id: string, text: string): Promise<void> {
     const query = { id };
 
     const newvalues = { $set: { name: text } };
-    console.log('NAME: ' + text);
+
     const result = await client
       .db('yalloo')
       .collection('users')

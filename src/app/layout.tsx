@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' style={{ margin: 0, top: '-2px' }}>
       {/* NEXT.js 13 버전에서 link 태그는 축약식이 아닌 닫는 태그를 꼭 위치해야 함 */}
       {/* <link rel='preconnect' href='https://fonts.googleapis.com'></link>
       <link
