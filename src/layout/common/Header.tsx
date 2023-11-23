@@ -1,11 +1,10 @@
 import React from "react";
 import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
-import {Button} from "@mui/base";
 
 export default function Header() {
 
   return (
-    <AppBar position='static'>
+    <AppBar position="fixed" sx={{ backgroundColor: 'transparent' }}>
       <Toolbar>
         <IconButton
           size='large'
@@ -16,10 +15,10 @@ export default function Header() {
         >
           {/*<MenuIcon/>*/}
         </IconButton>
-        <Typography variant='h6' component='div' sx={{flexGrow: 1}}>
+        <Typography variant='h6' component='div' sx={{flexGrow: 1, color: 'primary.main'}}>
           블로그 레이아웃
         </Typography>
-        <Button color='inherit'>Login</Button>
+        {/*<Button color='inherit'>Login</Button>*/}
       </Toolbar>
     </AppBar>
   )

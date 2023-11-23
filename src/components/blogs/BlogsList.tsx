@@ -1,49 +1,35 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import {CardType, findAll} from '@/components/blogs/actions';
-import {Grid} from "@mui/material";
+"use client"
+import React, {useState} from 'react';
+import {CardType} from '@/components/blogs/actions';
+import {Box, Grid, Tab, Tabs} from "@mui/material";
+import {BlogListCards} from "@/components/blogs/BlogsList.Cards";
 
-export default async function BlogsList() {
+export default function BlogsList({cards}: { cards: CardType[] }) {
   // api
-  const cards = await findAll();
+  const [value, setValue] = useState(0);
 
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
   //
   return (
     <Grid container spacing={3}>
+      <Grid item md={12}>
+        <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab label="Item One" value={1}/>
+            <Tab label="Item Two" value={2}/>
+            <Tab label="Item Three" value={3}/>
+          </Tabs>
+        </Box>
+      </Grid>
       {
         cards.map((card) => (
-          <Grid item xs={12} md={4}>
-            <Card sx={{maxWidth: 345}}>
-              <CardMedia
-                sx={{height: 140}}
-                image='/static/images/cards/contemplative-reptile.jpg'
-                title='green iguana'
-              />
-              <CardContent>
-                <Typography gutterBottom variant='h5' component='div'>
-                  {card.name}
-                </Typography>
-                <Typography variant='body2' color='text.secondary'>
-                  {card.age}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size='small' href={`/blogs/entry/${card.id}`}>
-                  구독
-                </Button>
-                <Button size='small'>좋아요</Button>
-              </CardActions>
-            </Card>
+          <Grid key={card.id} item xs={12} md={2}>
+            <BlogListCards card={card}/>
           </Grid>
         ))
       }
-
     </Grid>
-
   );
 }

@@ -10,9 +10,11 @@ export const Layout = ({children}: { children: React.ReactNode }) => {
       <Header/>
       <Box
         sx={{
+          flexGrow: 1,
           minHeight: 1,
           display: 'flex',
-          flexDirection: {xs: 'column', md: 'row'},
+          flexDirection: 'column',
+          padding: '100px'
         }}
       >
         {children}
