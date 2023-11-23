@@ -1,7 +1,7 @@
 'use client';
 import Input from '@mui/material/Input/Input';
 import React, { useEffect, useState } from 'react';
-import { CardType } from '@/app/_components/post_card/actions';
+import { CardType } from '@/components/blogs/actions';
 import Button from '@mui/material/Button/Button';
 
 export default function PostEditor({ post }: { post: CardType }) {

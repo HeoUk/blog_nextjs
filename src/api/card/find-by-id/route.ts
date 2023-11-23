@@ -1,4 +1,4 @@
-import {findById} from '@/app/_components/post_card/actions';
+import {findById} from '@/components/blogs/actions';
 
 export async function GET(request: Request) {
   const {searchParams} = new URL(request.url);
