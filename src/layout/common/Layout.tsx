@@ -1,8 +1,9 @@
 import Header from "@/layout/common/Header";
 import {Box} from "@mui/system";
 import React from "react";
+import NavVertical from "@/layout/common/NavVertical";
 
-export const Layout = ({children}: { children: React.ReactNode }) => {
+export default function Layout({children}: { children: React.ReactNode }) {
 
   //
   return (
@@ -14,9 +15,11 @@ export const Layout = ({children}: { children: React.ReactNode }) => {
           minHeight: 1,
           display: 'flex',
           flexDirection: 'column',
-          padding: '100px'
+          paddingTop: '100px',
+          paddingLeft: '150px',
         }}
       >
+        <NavVertical/>
         {children}
       </Box>
     </>

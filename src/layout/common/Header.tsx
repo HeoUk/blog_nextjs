@@ -4,7 +4,7 @@ import {AppBar, IconButton, Toolbar, Typography} from "@mui/material";
 export default function Header() {
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: 'transparent' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: 'transparent' , height: '70px'}}>
       <Toolbar>
         <IconButton
           size='large'

@@ -19,7 +19,8 @@
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.1",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
     "@types/node": "^20",
