@@ -11,16 +11,24 @@ export default function Layout({children}: { children: React.ReactNode }) {
       <Header/>
       <Box
         sx={{
-          flexGrow: 1,
           minHeight: 1,
           display: 'flex',
-          flexDirection: 'column',
-          paddingTop: '100px',
-          paddingLeft: '150px',
+          flexDirection: {xs: 'column', md: 'row'},
         }}
       >
         <NavVertical/>
-        {children}
+        <Box
+          sx={{
+            flexGrow: 1,
+            minHeight: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            paddingTop: '100px',
+            paddingLeft: '180px',
+          }}
+        >
+          {children}
+        </Box>
       </Box>
     </>
   )
