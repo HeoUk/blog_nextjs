@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PostCard from '@/app/_components/post_card/PostCard';
-import { findAll } from '@/app/_components/post_card/actions';
+import { findAll } from '@/app/_components/post_card/api/actions';
 
 export default async function Page({
   params,
@@ -38,9 +38,9 @@ export default async function Page({
           <Button color='inherit'>Login</Button>
         </Toolbar>
       </AppBar>
-      {
-        cards.map(card => <PostCard card={card}></PostCard>)
-      }
+      {cards.map((card) => (
+        <PostCard card={card}></PostCard>
+      ))}
     </Box>
   );
 }

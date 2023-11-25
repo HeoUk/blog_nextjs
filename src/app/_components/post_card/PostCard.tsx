@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { CardType } from '@/app/_components/post_card/actions';
+import { CardType } from '@/app/_components/post_card/api/actions';
 
 export default async function PostCard({ card }: { card: CardType }) {
   //

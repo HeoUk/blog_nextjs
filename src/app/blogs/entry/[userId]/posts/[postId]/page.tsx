@@ -1,5 +1,5 @@
 import PostEditor from '@/app/_components/editor/PostEditor';
-import { findById } from '@/app/_components/post_card/actions';
+import { findById } from '@/app/_components/post_card/api/actions';
 
 export default async function Page({
   params,
