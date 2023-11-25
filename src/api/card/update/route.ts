@@ -5,6 +5,6 @@ export async function GET(request: Request) {
   const id = searchParams.get('id');
   // const name = searchParams.get('name');
 
-  // const card = await update(id || '', name || '');
+  // const card = await update(id ?? '', name ?? '');
   return Response.json({ id });
 }

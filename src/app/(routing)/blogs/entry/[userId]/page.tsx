@@ -1,4 +1,4 @@
-import { findAll } from '@/app/_components/post_card/actions';
+import { findAll } from '@/components/blogs/actions';
 import Button from '@mui/material/Button/Button';
 
 export default async function Page({ params }: { params: { userId: string } }) {
