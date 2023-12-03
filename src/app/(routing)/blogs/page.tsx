@@ -1,11 +1,13 @@
 import * as React from 'react';
 import BlogsList from '@/components/blogs/BlogsList';
-import {findAll} from '@/components/blogs/actions';
+import { findAll } from '@/components/blogs/actions';
+import BarHorizenMenu from '@/components/bar/horizen/Menu';
+import AdvertisementHorizenBar from '@/components/bar/horizen/Banner/MainBanner';
 
 export default async function Page({
-                                     params,
-                                     searchParams,
-                                   }: {
+  params,
+  searchParams,
+}: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
@@ -14,6 +16,10 @@ export default async function Page({
 
   //
   return (
-    <BlogsList cards={cards}/>
+    <>
+      <BarHorizenMenu />
+      <AdvertisementHorizenBar />
+      <BlogsList cards={cards} />
+    </>
   );
 }
