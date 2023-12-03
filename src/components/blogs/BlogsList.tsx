@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {CardType} from '@/components/blogs/actions';
 import {Box, Grid, Tab, Tabs} from "@mui/material";
-import {BlogListCards} from "@/components/blogs/BlogsList.Cards";
+import {BlogListCards} from "@/components/blogs/index";
 
 export default function BlogsList({cards}: { cards: CardType[] }) {
   // api

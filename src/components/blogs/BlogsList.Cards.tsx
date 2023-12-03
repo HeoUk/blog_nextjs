@@ -7,14 +7,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {CardType} from '@/components/blogs/actions';
 
-export const BlogListCards = ({card}: { card: CardType }) => {
-
-export default async function PostCard({ card }: { card: CardType }) {
+export default async function PostCard({card}: { card: CardType }) {
   //
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{maxWidth: 345}}>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{height: 140}}
         image='/static/images/cards/contemplative-reptile.jpg'
         title='green iguana'
       />
