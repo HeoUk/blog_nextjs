@@ -1,8 +1,9 @@
 import * as React from 'react';
 import BlogsList from '@/components/blogs/BlogsList';
 import { findAll } from '@/components/blogs/actions';
-import BarHorizenMenu from '@/components/bar/horizen/Menu';
+import BarHorizenMenu from '@/components/bar/horizen/Menu/BarHorizenMenu';
 import AdvertisementHorizenBar from '@/components/bar/horizen/Banner/MainBanner';
+import RecomendBlogsList from '@/components/blogs/RecommendBlogList/RecomendBlogsList';
 
 export default async function Page({
   params,
@@ -19,6 +20,7 @@ export default async function Page({
     <>
       <BarHorizenMenu />
       <AdvertisementHorizenBar />
+      <RecomendBlogsList />
       <BlogsList cards={cards} />
     </>
   );

@@ -23,7 +23,9 @@ export default async function MainBanner() {
       }}
     >
       <Paper>
-        <div dangerouslySetInnerHTML={{ __html: banner.contents }}></div>
+        <div
+          dangerouslySetInnerHTML={{ __html: banner ? banner.contents : '' }}
+        ></div>
       </Paper>
     </Box>
   );

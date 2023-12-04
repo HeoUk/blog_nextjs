@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { MenuItem, Select, Tab, Tabs } from '@mui/material';
 import Grid from '@mui/material/Grid/Grid';
+import { fetchBlogCategory } from './api/rest/action';
 
 function getSearchDate() {
   //str1.padStart(2, '0')
@@ -27,6 +28,17 @@ export default function BarHorizenMenu() {
   const currnetDateList = getSearchDate();
   const [searchDate, setSearchDate] = useState(currnetDateList[0]);
   const [searchTab, setSearchTab] = useState('Web');
+  // BlogCategory
+  const [blogCategories, setBlogCategories] = useState([{ id: '', name: '' }]);
+
+  useEffect(() => {
+    async function getBlogCategory() {
+      const blogCategories = await fetchBlogCategory();
+      setBlogCategories(blogCategories);
+    }
+
+    getBlogCategory();
+  });
 
   const handleChangeCurrentDate = (event: { target: { value: string } }) => {
     setSearchDate(event.target.value);
@@ -45,8 +57,10 @@ export default function BarHorizenMenu() {
         label='Date'
         onChange={handleChangeCurrentDate}
       >
-        {currnetDateList.map((date) => (
-          <MenuItem value={date}>{formatKor(date)}</MenuItem>
+        {currnetDateList.map((date, idx) => (
+          <MenuItem key={idx} value={date}>
+            {formatKor(date)}
+          </MenuItem>
         ))}
       </Select>
       <Grid item xs={8}>
@@ -55,10 +69,13 @@ export default function BarHorizenMenu() {
           onChange={handleChangeTabs}
           aria-label='basic tabs example'
         >
-          <Tab label='Web' value='Web' />
-          <Tab label='Database' value='Database' />
-          <Tab label='Kotlin' value='Kotlin' />
-          <Tab label='C++/C#' value='C++/C#' />
+          {blogCategories.map((blogCategory, idx) => (
+            <Tab
+              id={blogCategory.id}
+              label={blogCategory.name}
+              value={blogCategory.id}
+            />
+          ))}
         </Tabs>
       </Grid>
       <Grid item xs={4}></Grid>

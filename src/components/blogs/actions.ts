@@ -1,4 +1,4 @@
-import { getClient, createCollection } from '@/api/_db/mongodb';
+import { getClient, createCollection } from '@/app/api/_db/mongodb';
 
 // const uri =
 //   'mongodb+srv://Cluster34912:qkrtkdgus@cluster34912.qd9uvtg.mongodb.net/?retryWrites=true&w=majority';
@@ -8,6 +8,12 @@ export type CardType = {
   name: string;
   age: string;
 };
+
+interface BlogCategory {
+  id: number;
+  name: string;
+  tags: string[];
+}
 
 async function findAll(): Promise<CardType[]> {
   //
@@ -49,6 +55,24 @@ async function findById(id: string): Promise<CardType> {
   }
 }
 
+async function findBlogCategories(): Promise<BlogCategory[]> {
+  const client = await getClient();
+
+  try {
+    await client.connect();
+
+    const result = await client
+      .db('yalloo')
+      .collection('BlogCategory')
+      .find<BlogCategory>({})
+      .toArray();
+
+    return result;
+  } finally {
+    await client.close();
+  }
+}
+
 async function update(id: string, text: string): Promise<void> {
   const client = await getClient();
 
@@ -68,4 +92,4 @@ async function update(id: string, text: string): Promise<void> {
   }
 }
 
-export { findAll, findById, update };
+export { findAll, findById, update, findBlogCategories };
