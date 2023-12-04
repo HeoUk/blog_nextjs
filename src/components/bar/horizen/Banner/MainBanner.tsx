@@ -24,7 +24,7 @@ export default async function MainBanner() {
     >
       <Paper>
         <div
-          dangerouslySetInnerHTML={{ __html: banner ? banner.contents : '' }}
+          dangerouslySetInnerHTML={{ __html: banner ? banner.contents : 'DB  읽기 실패' }}
         ></div>
       </Paper>
     </Box>
