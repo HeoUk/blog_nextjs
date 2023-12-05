@@ -1,22 +1,48 @@
-import React from 'react';
-import { CardType } from '@/components/blogs/actions';
-import { Box, Grid, Tab, Tabs } from '@mui/material';
-import { BlogListCards } from '@/components/blogs/index';
-import { findBlogByDate } from './api/action';
-import Image from 'next/image';
+'use client';
 
-export default async function RecomendBlogsList() {
+import React, { useEffect, useState } from 'react';
+import { BlogCategory, CardType } from '@/components/blogs/actions';
+import BarHorizenMenu from '@/components/bar/horizen/Menu/BarHorizenMenu';
+import AdvertisementHorizenBar from '@/components/bar/horizen/Banner/MainBanner';
+import BlogsList from '@/components/blogs/BlogsList';
+import { Blog } from '../api/model/Blog';
+import { Banner } from '@/components/bar/horizen/Banner/api/model/Banner';
+import RecommendBlog from './RecomendBlog';
+
+interface Props {
+  cards: CardType[];
+  currentDateList: string[];
+  blogs: Blog[];
+  banner: Banner;
+  blogCategories: BlogCategory[];
+}
+
+export default function RecomendBlogsList(props: Props) {
   //
-  const blogs = await findBlogByDate('202312');
+  const { cards, currentDateList, blogs, banner, blogCategories } = props;
+
+  const [searchDate, setSearchDate] = useState(currentDateList[0]);
+  const [searchTab, setSearchTab] = useState(0);
+
+  useEffect(() => {
+    setSearchTab(blogCategories[0].id);
+  }, []);
+
+  // BlogCategory
   return (
     <div>
-      <Image
-        width={20}
-        height={20}
-        alt={''}
-        src={blogs ? blogs[0].image64 : ''}
-      ></Image>
+      <BarHorizenMenu
+        searchDate={searchDate}
+        setSearchDate={setSearchDate}
+        searchTab={searchTab}
+        setSearchTab={setSearchTab}
+        currnetDateList={currentDateList}
+        blogCategories={blogCategories}
+      />
+      <AdvertisementHorizenBar banner={banner} />
+
       {JSON.stringify(blogs)}
+      <RecommendBlog blogs={blogs} />
     </div>
   );
 }

@@ -1,50 +1,39 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import React from 'react';
 import { MenuItem, Select, Tab, Tabs } from '@mui/material';
 import Grid from '@mui/material/Grid/Grid';
-import { fetchBlogCategory } from './api/rest/action';
+import { BlogCategory } from '@/components/blogs/actions';
 
-function getSearchDate() {
-  //str1.padStart(2, '0')
-  const currnetDate: moment.Moment = moment();
-  const dateList = [];
-
-  for (let i = 0; i < 5; i++) {
-    const date = currnetDate.subtract(1, 'M').format('yyyyMM');
-    dateList.push(date);
-  }
-
-  return dateList;
+interface Props {
+  searchDate: string;
+  setSearchDate: React.Dispatch<React.SetStateAction<string>>;
+  searchTab: number;
+  setSearchTab: React.Dispatch<React.SetStateAction<number>>;
+  currnetDateList: string[];
+  blogCategories: BlogCategory[];
 }
 
 function formatKor(value: string) {
   return value.substring(0, 4) + '년 ' + value.substring(4) + '월';
 }
 
-export default function BarHorizenMenu() {
+export default function BarHorizenMenu(props: Props) {
   //
-  const currnetDateList = getSearchDate();
-  const [searchDate, setSearchDate] = useState(currnetDateList[0]);
-  const [searchTab, setSearchTab] = useState('Web');
-  // BlogCategory
-  const [blogCategories, setBlogCategories] = useState([{ id: '', name: '' }]);
-
-  useEffect(() => {
-    async function getBlogCategory() {
-      const blogCategories = await fetchBlogCategory();
-      setBlogCategories(blogCategories);
-    }
-
-    getBlogCategory();
-  });
+  const {
+    searchDate,
+    setSearchDate,
+    searchTab,
+    setSearchTab,
+    currnetDateList,
+    blogCategories,
+  } = props;
 
   const handleChangeCurrentDate = (event: { target: { value: string } }) => {
     setSearchDate(event.target.value);
   };
 
-  const handleChangeTabs = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChangeTabs = (event: React.SyntheticEvent, newValue: number) => {
     setSearchTab(newValue);
   };
 
@@ -70,11 +59,7 @@ export default function BarHorizenMenu() {
           aria-label='basic tabs example'
         >
           {blogCategories.map((blogCategory, idx) => (
-            <Tab
-              id={blogCategory.id}
-              label={blogCategory.name}
-              value={blogCategory.id}
-            />
+            <Tab key={idx} label={blogCategory.name} value={blogCategory.id} />
           ))}
         </Tabs>
       </Grid>

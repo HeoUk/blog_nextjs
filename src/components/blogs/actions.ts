@@ -9,7 +9,7 @@ export type CardType = {
   age: string;
 };
 
-interface BlogCategory {
+export interface BlogCategory {
   id: number;
   name: string;
   tags: string[];

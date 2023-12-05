@@ -1,12 +1,13 @@
 import { Box, Paper } from '@mui/material';
 import { Banner } from './api/model/Banner';
-import { findAllBanners } from './api/action';
 
-export default async function MainBanner() {
+interface Props {
+  banner: Banner;
+}
+
+export default function MainBanner(props: Props) {
   //
-  const banners: Banner[] = await findAllBanners();
-  const randomNumber = Math.floor(Math.random() * (banners.length + 1));
-  const banner = banners[randomNumber];
+  const { banner } = props;
 
   return (
     <Box
@@ -24,7 +25,9 @@ export default async function MainBanner() {
     >
       <Paper>
         <div
-          dangerouslySetInnerHTML={{ __html: banner ? banner.contents : 'DB  읽기 실패' }}
+          dangerouslySetInnerHTML={{
+            __html: banner ? banner.contents : 'DB  읽기 실패',
+          }}
         ></div>
       </Paper>
     </Box>
