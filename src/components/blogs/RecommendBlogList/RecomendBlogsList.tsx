@@ -8,6 +8,9 @@ import BlogsList from '@/components/blogs/BlogsList';
 import { Blog } from '../api/model/Blog';
 import { Banner } from '@/components/bar/horizen/Banner/api/model/Banner';
 import RecommendBlog from './RecomendBlog';
+import RecommendBlogInfoBar from './RecommentBlogInfoBar';
+import PostingCard from '@/components/posting/PostingCard';
+import PostingCardHorizenList from '@/components/posting/PostingCardHorizenList';
 
 interface Props {
   cards: CardType[];
@@ -23,10 +26,29 @@ export default function RecomendBlogsList(props: Props) {
 
   const [searchDate, setSearchDate] = useState(currentDateList[0]);
   const [searchTab, setSearchTab] = useState(0);
+  const [tags, setTags] = useState([] as string[]);
 
   useEffect(() => {
     setSearchTab(blogCategories[0].id);
   }, []);
+
+  useEffect(() => {
+    //
+    let tags: string[] = [];
+
+    blogs.map((blog) => {
+      const postings = blog.postings;
+
+      let postingTags: string[] = [];
+      postings.map((posting) => {
+        postingTags = [...postingTags, ...posting.tags];
+      });
+
+      tags = [...tags, ...postingTags];
+    });
+
+    setTags(Array.from(new Set(tags)));
+  }, [blogs]);
 
   // BlogCategory
   return (
@@ -40,9 +62,21 @@ export default function RecomendBlogsList(props: Props) {
         blogCategories={blogCategories}
       />
       <AdvertisementHorizenBar banner={banner} />
-
-      {JSON.stringify(blogs)}
-      <RecommendBlog blogs={blogs} />
+      {tags.map((tag) => (
+        <>
+          <RecommendBlogInfoBar tag={tag} />
+          <RecommendBlog tag={tag} blogs={blogs} />
+          <PostingCardHorizenList>
+            {[
+              <PostingCard
+                title={blogs[0].postings[0].title}
+                blogImage={blogs[0].image64}
+                postingImage={blogs[0].postings[0].image64}
+              />,
+            ]}
+          </PostingCardHorizenList>
+        </>
+      ))}
     </div>
   );
 }

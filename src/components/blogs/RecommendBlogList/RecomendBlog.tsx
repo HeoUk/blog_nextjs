@@ -7,33 +7,65 @@ import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import AddAlertIcon from '@mui/icons-material/AddAlert';
 import { Blog } from '../api/model/Blog';
 import Image from 'next/image';
+import Grid from '@mui/material/Grid/Grid';
+import { Box, Button, Typography } from '@mui/material';
 
 interface Props {
+  tag: string;
   blogs: Blog[];
 }
 
 export default function RecommendBlog(props: Props) {
   //
-  const { blogs } = props;
+  const { tag, blogs } = props;
 
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List
+      sx={{
+        width: '100%',
+        bgcolor: 'background.paper',
+      }}
+    >
       {blogs.map((blog) => (
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <Image
-                width={20}
-                height={20}
-                alt={''}
-                src={blog ? blog.image64 : ''}
-              ></Image>
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={blog.blogName} secondary={blog.userName} />
-        </ListItem>
+        <Grid container>
+          <Grid item xs={4}>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <Image
+                    width={20}
+                    height={20}
+                    alt={''}
+                    src={blog ? blog.image64 : ''}
+                  ></Image>
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={blog.blogName} secondary={blog.userName} />
+            </ListItem>
+          </Grid>
+          <Grid item xs={6}>
+            <Box sx={{ padding: 2 }}>
+              <Typography
+                sx={{ mt: 2, mb: 1 }}
+                variant='subtitle2'
+                component='div'
+              >
+                {blog.blogIntroduce}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={2}>
+            <Box sx={{ padding: 2 }}>
+              <Button>
+                <AddAlertIcon />
+              </Button>
+              <Button variant='contained'>Subscribe</Button>
+            </Box>
+          </Grid>
+        </Grid>
       ))}
       {/* 
       <ListItem>

@@ -19,5 +19,6 @@ export interface Posting {
   registerTime: number;
   registerDate: string;
   modifiedTime: number;
-  modifiedDaste: string;
+  modifiedDate: string;
+  image64: string;
 }
