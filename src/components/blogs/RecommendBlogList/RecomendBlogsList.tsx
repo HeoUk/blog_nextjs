@@ -5,7 +5,7 @@ import { BlogCategory, CardType } from '@/components/blogs/actions';
 import BarHorizenMenu from '@/components/bar/horizen/Menu/BarHorizenMenu';
 import AdvertisementHorizenBar from '@/components/bar/horizen/Banner/MainBanner';
 import BlogsList from '@/components/blogs/BlogsList';
-import { Blog } from '../api/model/Blog';
+import { Blog, Posting } from '../api/model/Blog';
 import { Banner } from '@/components/bar/horizen/Banner/api/model/Banner';
 import RecommendBlog from './RecomendBlog';
 import RecommendBlogInfoBar from './RecommentBlogInfoBar';
@@ -27,6 +27,7 @@ export default function RecomendBlogsList(props: Props) {
   const [searchDate, setSearchDate] = useState(currentDateList[0]);
   const [searchTab, setSearchTab] = useState(0);
   const [tags, setTags] = useState([] as string[]);
+  const [postingMap, setPostingMap] = useState(new Map());
 
   useEffect(() => {
     setSearchTab(blogCategories[0].id);
@@ -35,19 +36,30 @@ export default function RecomendBlogsList(props: Props) {
   useEffect(() => {
     //
     let tags: string[] = [];
+    const postingMap = new Map<string, Posting[]>();
 
     blogs.map((blog) => {
       const postings = blog.postings;
 
       let postingTags: string[] = [];
+
       postings.map((posting) => {
         postingTags = [...postingTags, ...posting.tags];
+        posting.tags.map((tag) => {
+          const mapContent = postingMap.get(tag);
+          if (mapContent) {
+            postingMap.set(tag, [...mapContent, posting]);
+          } else {
+            postingMap.set(tag, [posting]);
+          }
+        });
       });
 
       tags = [...tags, ...postingTags];
     });
 
     setTags(Array.from(new Set(tags)));
+    setPostingMap(postingMap);
   }, [blogs]);
 
   // BlogCategory
@@ -67,13 +79,19 @@ export default function RecomendBlogsList(props: Props) {
           <RecommendBlogInfoBar tag={tag} />
           <RecommendBlog tag={tag} blogs={blogs} />
           <PostingCardHorizenList>
-            {[
-              <PostingCard
-                title={blogs[0].postings[0].title}
-                blogImage={blogs[0].image64}
-                postingImage={blogs[0].postings[0].image64}
-              />,
-            ]}
+            {postingMap.get(tag).map((posting: Posting) => {
+              return (
+                <PostingCard
+                  title={posting.title}
+                  blogImage={
+                    blogs.filter(
+                      (blog) => blog.id === posting.id.split('-')[0]
+                    )[0].image64
+                  }
+                  postingImage={posting.image64}
+                />
+              );
+            })}
           </PostingCardHorizenList>
         </>
       ))}

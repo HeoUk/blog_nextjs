@@ -8,6 +8,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import AddAlertIcon from '@mui/icons-material/AddAlert';
+import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import { Blog } from '../api/model/Blog';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid/Grid';
@@ -60,7 +61,7 @@ export default function RecommendBlog(props: Props) {
           <Grid item xs={2}>
             <Box sx={{ padding: 2 }}>
               <Button>
-                <AddAlertIcon />
+                {true ? <AddAlertOutlinedIcon /> : <AddAlertIcon />}
               </Button>
               <Button variant='contained'>Subscribe</Button>
             </Box>

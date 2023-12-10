@@ -21,6 +21,7 @@
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-material-ui-carousel": "^3.4.2",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.1.1"
   },

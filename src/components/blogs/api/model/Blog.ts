@@ -1,5 +1,5 @@
 export interface Blog {
-  id: number;
+  id: string;
   blogName: string;
   userId: string;
   userName: string;
@@ -11,6 +11,7 @@ export interface Blog {
 }
 
 export interface Posting {
+  id: string;
   title: string;
   contents: string;
   tags: string[];

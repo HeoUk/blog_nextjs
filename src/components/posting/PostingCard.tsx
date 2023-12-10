@@ -25,17 +25,17 @@ export default function PostingCard(props: Props) {
       <CardMedia
         component='img'
         src={postingImage}
-        sx={{ height: 100 }}
+        sx={{ height: 150 }}
         title='postingImage'
       />
-      <CardContent sx={{ maxHeight: 80 }}>
+      <CardContent sx={{ maxHeight: 50 }}>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image width={20} height={20} alt={''} src={blogImage}></Image>
+              <Image width={35} height={35} alt={''} src={blogImage}></Image>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={title} />
+          <ListItemText content='p' sx={{ fontSize: 9 }} primary={title} />
         </ListItem>
       </CardContent>
     </Card>
