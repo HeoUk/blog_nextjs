@@ -1,4 +1,4 @@
-export interface Banner {
+export type Banner = {
   id: string;
   contents: string;
   order: number;

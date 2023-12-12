@@ -1,5 +1,5 @@
 import { Box, Paper } from '@mui/material';
-import { Banner } from './api/model/Banner';
+import {Banner} from "@/types/banner";
 
 interface Props {
   banner: Banner;

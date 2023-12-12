@@ -1,10 +1,7 @@
 import Button from '@mui/material/Button/Button';
-import { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Posting } from '../blogs/api/model/Blog';
-import { Grid } from '@mui/material';
-
-interface Props {}
+import {Grid} from '@mui/material';
 
 export default function PostingCardHorizenList({
   children,

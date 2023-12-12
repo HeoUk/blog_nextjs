@@ -1,2 +1,2 @@
-export {usePathname} from './usePathname';
-export {useActiveLink} from './useActiveLink';
+export {usePathname} from './use-pathname';
+export {useActiveLink} from './use-active-link';

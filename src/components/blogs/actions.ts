@@ -1,4 +1,4 @@
-import { getClient, createCollection } from '@/app/api/_db/mongodb';
+import {getClient} from '@/api/_db/mongodb';
 
 // const uri =
 //   'mongodb+srv://Cluster34912:qkrtkdgus@cluster34912.qd9uvtg.mongodb.net/?retryWrites=true&w=majority';

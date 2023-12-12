@@ -1,4 +1,4 @@
-import PostEditor from '@/components/editor/PostEditor';
+import PostEditor from '@/components/editor/post-editor';
 import { findById } from '@/components/blogs/actions';
 
 export default async function Page({

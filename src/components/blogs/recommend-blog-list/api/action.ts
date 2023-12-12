@@ -1,5 +1,5 @@
-import { getClient } from '@/app/api/_db/mongodb';
-import { Blog } from '../../api/model/Blog';
+import { getClient } from '@/api/_db/mongodb';
+import { Blog } from '@/types/blog';
 
 async function findBlogByDate(date: string): Promise<Blog[]> {
   const client = await getClient();

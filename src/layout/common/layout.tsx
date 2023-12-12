@@ -1,7 +1,7 @@
-import Header from '@/layout/common/Header';
+import Header from '@/layout/common/header';
 import { Box } from '@mui/system';
 import React from 'react';
-import NavVertical from '@/layout/common/NavVertical';
+import NavVertical from '@/layout/common/nav-vertical';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   //

@@ -1,5 +1,5 @@
-import { getClient } from '@/app/api/_db/mongodb';
-import { Banner } from './model/Banner';
+import { getClient } from '@/api/_db/mongodb';
+import {Banner} from "@/types/banner";
 
 async function findAllBanners(): Promise<Banner[]> {
   const client = await getClient();

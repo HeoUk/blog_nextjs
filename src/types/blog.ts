@@ -1,4 +1,4 @@
-export interface Blog {
+export type Blog = {
   id: string;
   blogName: string;
   userId: string;
@@ -10,7 +10,7 @@ export interface Blog {
   notiListeners: string[];
 }
 
-export interface Posting {
+export type Posting = {
   id: string;
   title: string;
   contents: string;

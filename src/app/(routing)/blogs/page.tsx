@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { findAll, findBlogCategories } from '@/components/blogs/actions';
-import { BlogListCards } from '@/components/blogs/index';
-import RecomendBlogsList from '@/components/blogs/RecommendBlogList/RecomendBlogsList';
+import {findBlogCategories} from '@/components/blogs/actions';
+import RecomendBlogsList from '@/components/blogs/recommend-blog-list/recomend-blogs-list';
 import moment from 'moment';
-import { findBlogByDate } from '@/components/blogs/RecommendBlogList/api/action';
-import { Banner } from '@/components/bar/horizen/Banner/api/model/Banner';
-import { findAllBanners } from '@/components/bar/horizen/Banner/api/action';
+import {findBlogByDate} from '@/components/blogs/recommend-blog-list/api/action';
+import {Banner} from '@/types/banner';
+import {findAllBanners} from '@/components/bar/horizen/banner/api/action';
 
 function getSearchDate() {
   //str1.padStart(2, '0')

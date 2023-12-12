@@ -1,13 +1,10 @@
 import Avatar from '@mui/material/Avatar/Avatar';
-import Button from '@mui/material/Button/Button';
 import Card from '@mui/material/Card/Card';
-import CardActions from '@mui/material/CardActions/CardActions';
 import CardContent from '@mui/material/CardContent/CardContent';
 import ListItemText from '@mui/material/ListItemText';
 import CardMedia from '@mui/material/CardMedia/CardMedia';
 import ListItem from '@mui/material/ListItem/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar/ListItemAvatar';
-import Typography from '@mui/material/Typography/Typography';
 import Image from 'next/image';
 
 interface Props {

@@ -4,15 +4,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import AddAlertIcon from '@mui/icons-material/AddAlert';
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
-import { Blog } from '../api/model/Blog';
+import {Blog} from '@/types/blog';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid/Grid';
-import { Box, Button, Typography } from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 
 interface Props {
   tag: string;

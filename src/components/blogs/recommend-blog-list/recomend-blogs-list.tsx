@@ -1,16 +1,15 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { BlogCategory, CardType } from '@/components/blogs/actions';
-import BarHorizenMenu from '@/components/bar/horizen/Menu/BarHorizenMenu';
-import AdvertisementHorizenBar from '@/components/bar/horizen/Banner/MainBanner';
-import BlogsList from '@/components/blogs/BlogsList';
-import { Blog, Posting } from '../api/model/Blog';
-import { Banner } from '@/components/bar/horizen/Banner/api/model/Banner';
-import RecommendBlog from './RecomendBlog';
-import RecommendBlogInfoBar from './RecommentBlogInfoBar';
-import PostingCard from '@/components/posting/PostingCard';
-import PostingCardHorizenList from '@/components/posting/PostingCardHorizenList';
+import React, {useEffect, useState} from 'react';
+import {BlogCategory, CardType} from '@/components/blogs/actions';
+import BarHorizenMenu from '@/components/bar/horizen/menu/BarHorizenMenu';
+import AdvertisementHorizenBar from '@/components/bar/horizen/banner/main-banner';
+import {Blog, Posting} from '@/types/blog';
+import {Banner} from '@/types/banner';
+import RecommendBlog from './recomend-blog';
+import RecommendBlogInfoBar from './recomment-blog-info-bar';
+import PostingCard from '@/components/posting/posting-card';
+import PostingCardHorizenList from '@/components/posting/posting-card-horizen-list';
 
 interface Props {
   cards: CardType[];
