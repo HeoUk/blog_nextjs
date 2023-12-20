@@ -8,7 +8,7 @@ import {findAllBanners} from '@/components/bar/horizen/banner/api/action';
 
 function getSearchDate() {
   //str1.padStart(2, '0')
-  const currnetDate: moment.Moment = moment();
+  const currnetDate = moment();
   const dateList = [];
 
   const date = currnetDate.format('yyyyMM');
@@ -22,9 +22,9 @@ function getSearchDate() {
 }
 
 export default async function Page({
-  params,
-  searchParams,
-}: {
+                                     params,
+                                     searchParams,
+                                   }: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
