@@ -1,8 +1,9 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import type {Metadata} from 'next';
+import {Inter} from 'next/font/google';
 import './globals.css';
+import {SettingsDrawer, SettingsProvider} from "@/shared-comps/settings";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -10,14 +11,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: {
+                                     children,
+                                   }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' style={{ margin: 0, top: '-2px' }}>
-      {/* NEXT.js 13 버전에서 link 태그는 축약식이 아닌 닫는 태그를 꼭 위치해야 함 */}
-      {/* <link rel='preconnect' href='https://fonts.googleapis.com'></link>
+    <html lang='en' style={{margin: 0, top: '-2px'}}>
+    {/* NEXT.js 13 버전에서 link 태그는 축약식이 아닌 닫는 태그를 꼭 위치해야 함 */}
+    {/* <link rel='preconnect' href='https://fonts.googleapis.com'></link>
       <link
         rel='preconnect'
         href='https://fonts.gstatic.com'
@@ -31,7 +32,20 @@ export default function RootLayout({
         rel='stylesheet'
         href='https://fonts.googleapis.com/icon?family=Material+Icons'
       ></link> */}
+
+    <SettingsProvider
+      defaultSettings={{
+        themeMode: 'light', // 'light' | 'dark'
+        themeDirection: 'ltr', //  'rtl' | 'ltr'
+        themeContrast: 'default', // 'default' | 'bold'
+        themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+        themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+        themeStretch: false,
+      }}
+    >
+      <SettingsDrawer />
       <body className={inter.className}>{children}</body>
+    </SettingsProvider>
     </html>
   );
 }

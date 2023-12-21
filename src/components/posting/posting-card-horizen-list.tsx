@@ -17,7 +17,6 @@ export default function PostingCardHorizenList({
     let postingBundle: React.ElementType[][] = [];
 
     const bundleSize = children.length > 4 ? children.length / 4 : 0;
-    debugger;
     for (let i = 0; i <= bundleSize; i++) {
       const tail = ((i * 4) + 4 ) >= children.length ? children.length : ((i * 4) + 4);
       postingBundle.push(children.slice(i * 4, tail));
