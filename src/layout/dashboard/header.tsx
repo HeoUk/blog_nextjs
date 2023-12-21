@@ -90,7 +90,7 @@ export default function Header({ onOpenNav }: Props) {
           }),
           ...(isNavHorizontal && {
             width: 1,
-            bgcolor: 'background.default',
+            backgroundColor: 'background.default',
             height: HEADER.H_DESKTOP_OFFSET,
             borderBottom: `dashed 1px ${theme.palette.divider}`,
           }),
