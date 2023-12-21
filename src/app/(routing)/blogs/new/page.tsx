@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {RegisterBlog} from "@/components/blogs/register-blog/register-blog";
+import {RegisterPosting} from "@/components/blogs/register-posting/register-posting";
 
 export default async function Page() {
   // pages에선 Server State만 관리
@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <>
-      <RegisterBlog/>
+      <RegisterPosting/>
     </>
   );
 }

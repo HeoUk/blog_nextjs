@@ -1,5 +1,5 @@
 import Header from '@/layout/common/header';
-import { Box } from '@mui/system';
+import { Box } from '@mui/material';
 import React from 'react';
 import NavVertical from '@/layout/common/nav-vertical';
 
