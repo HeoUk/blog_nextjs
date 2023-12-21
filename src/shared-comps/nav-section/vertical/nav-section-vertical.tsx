@@ -1,3 +1,4 @@
+'use client'
 import { memo, useState, useCallback } from 'react';
 // @mui
 import List from '@mui/material/List';

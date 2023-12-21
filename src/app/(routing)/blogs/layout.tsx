@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "@/layout/common/layout";
+import Layout from "@/layout/dashboard";
 
 export default function BlogLayout({children}: { children: React.ReactNode }) {
 

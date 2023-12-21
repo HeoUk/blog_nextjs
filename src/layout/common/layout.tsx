@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import React from 'react';
 import NavVertical from '@/layout/common/nav-vertical';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function commonLayout({ children }: { children: React.ReactNode }) {
   //
   return (
     <>

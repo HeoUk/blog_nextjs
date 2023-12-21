@@ -1,3 +1,4 @@
+'use client'
 // @mui
 import Box from '@mui/material/Box';
 //
@@ -16,7 +17,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function DashboardLayout({ children }: Props) {
+export default function Layout({ children }: Props) {
   const settings = useSettingsContext();
 
   const lgUp = useResponsive('up', 'lg');
