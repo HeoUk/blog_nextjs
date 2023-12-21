@@ -2,7 +2,7 @@ import {Stack, Theme} from "@mui/material";
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
 import {SxProps} from "@mui/system";
-import Iconify from "@/shared/iconify";
+import Iconify from "@/shared-comps/iconify";
 
 export const IconText = ({
                            icon,

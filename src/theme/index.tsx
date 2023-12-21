@@ -21,7 +21,7 @@ import {contrast} from './options/contrast';
 import RTL, {direction} from './options/right-to-left';
 //
 import NextAppDirEmotionCacheProvider from './next-emotion-cache';
-import {useSettingsContext} from "@/shared/settings";
+import {useSettingsContext} from "@/shared-comps/settings";
 
 // ----------------------------------------------------------------------
 

@@ -35,20 +35,21 @@ export default function PostingCardHorizenList({
           // Other logic
 
           return (
-            <Button
-              onClick={onClick}
-              className={className}
-              style={{
-                height: '100%',
-                backgroundColor: 'lightgrey',
-                color: 'black',
-                opacity: '0.8',
-                maxWidth: '15px',
-              }}
-            >
-              {next && '>'}
-              {prev && '<'}
-            </Button>
+            <></>
+            // <Button
+            //   onClick={onClick}
+            //   className={className}
+            //   style={{
+            //     height: '100%',
+            //     backgroundColor: 'lightgrey',
+            //     color: 'black',
+            //     opacity: '0.8',
+            //     maxWidth: '15px',
+            //   }}
+            // >
+            //   {next && '>'}
+            //   {prev && '<'}
+            // </Button>
           );
         }}
       >

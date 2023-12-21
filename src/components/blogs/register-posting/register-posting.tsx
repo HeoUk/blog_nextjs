@@ -4,9 +4,9 @@ import {Controller, useForm} from 'react-hook-form';
 import {Posting} from '@/types/blog';
 import {Box, Stack, TextField} from "@mui/material";
 import Grid from "@mui/material/Grid/Grid";
-import {IconText} from "@/shared/icon-text/icon-text";
 import Button from "@mui/material/Button";
-import {BorderLine} from "@/shared/border-line/border-line";
+import {IconText} from "@/shared-comps/icon-text/icon-text";
+import {BorderLine} from "@/shared-comps/border-line/border-line";
 
 
 export const RegisterPosting = () => {

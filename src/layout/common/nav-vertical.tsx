@@ -1,8 +1,8 @@
 'use client'
 
 import {Box, Stack} from "@mui/material";
-import Scrollbar from "@/shared/scrollbar";
-import {NavSectionVertical} from "@/shared/nav-section";
+import {NavSectionVertical} from "@/shared-comps/nav-section";
+import Scrollbar from "@/shared-comps/scrollbar";
 
 export default function NavVertical() {
   //
