@@ -3,7 +3,7 @@ import {findBlogCategories} from '@/components/blogs/actions';
 import RecomendBlogsList from '@/components/blogs/recommend-blog-list/recomend-blogs-list';
 import moment from 'moment';
 import {findBlogByDate} from '@/components/blogs/recommend-blog-list/api/action';
-import {Banner} from '@/types/banner';
+import {Banner} from '@/types/server/banner';
 import {findAllBanners} from '@/components/bar/horizen/banner/api/action';
 
 function getSearchDate() {

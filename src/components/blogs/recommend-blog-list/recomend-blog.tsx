@@ -6,7 +6,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import AddAlertIcon from '@mui/icons-material/AddAlert';
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
-import {Blog} from '@/types/blog';
+import {Blog} from '@/types/server/blog';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid/Grid';
 import {Box, Button, Typography} from '@mui/material';

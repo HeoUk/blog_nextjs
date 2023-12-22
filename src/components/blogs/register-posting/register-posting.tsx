@@ -1,7 +1,7 @@
 'use client'
 import MDEditor from '@uiw/react-md-editor';
 import {Controller, useForm} from 'react-hook-form';
-import {Posting} from '@/types/blog';
+import {Posting} from '@/types/server/blog';
 import {Box, Stack, TextField} from "@mui/material";
 import Grid from "@mui/material/Grid/Grid";
 import Button from "@mui/material/Button";
@@ -17,7 +17,7 @@ export const RegisterPosting = () => {
     // getValues,
     // reset,
     // watch,
-    formState: {errors},
+    // formState: {errors},
     control,
   } = useForm<Posting>();
 
