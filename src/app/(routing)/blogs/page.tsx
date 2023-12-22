@@ -3,8 +3,9 @@ import {findBlogCategories} from '@/components/blogs/actions';
 import RecomendBlogsList from '@/components/blogs/recommend-blog-list/recomend-blogs-list';
 import {findBlogByDate} from '@/components/blogs/recommend-blog-list/api/action';
 import {Banner} from '@/types/server/banner';
-import {findAllBanners} from '@/components/bar/horizen/banner/api/action';
+
 import {getSearchDate} from "@/utils/format-time";
+import {findAllBanners} from "@/components/blogs/bar/horizen/banner/api/action";
 
 
 export default async function Page({

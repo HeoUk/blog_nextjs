@@ -2,14 +2,16 @@
 
 import React, {useEffect, useState} from 'react';
 import {BlogCategory, CardType} from '@/components/blogs/actions';
-import BarHorizenMenu from '@/components/bar/horizen/menu/BarHorizenMenu';
-import AdvertisementHorizenBar from '@/components/bar/horizen/banner/main-banner';
+// import BarHorizenMenu from '@/components/bar/horizen/menu/BarHorizenMenu';
+// import AdvertisementHorizenBar from '@/components/bar/horizen/banner/main-banner';
 import {Blog, Posting} from '@/types/server/blog';
 import {Banner} from '@/types/server/banner';
 import RecommendBlog from './recomend-blog';
 import RecommendBlogInfoBar from './recomment-blog-info-bar';
-import PostingCard from '@/components/posting/posting-card';
-import PostingCardHorizenList from '@/components/posting/posting-card-horizen-list';
+import PostingCard from '@/components/blogs/posting/posting-card';
+import PostingCardHorizenList from '@/components/blogs/posting/posting-card-horizen-list';
+import MainBanner from "@/components/blogs/bar/horizen/banner/main-banner";
+import BarHorizenMenu from "@/components/blogs/bar/horizen/menu/BarHorizenMenu";
 
 interface Props {
   cards: CardType[];
@@ -72,7 +74,7 @@ export default function RecomendBlogsList(props: Props) {
         currnetDateList={currentDateList}
         blogCategories={blogCategories}
       />
-      <AdvertisementHorizenBar banner={banner} />
+      <MainBanner banner={banner} />
       {tags.map((tag) => (
         <>
           <RecommendBlogInfoBar tag={tag} />

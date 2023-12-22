@@ -10,6 +10,8 @@ import NavHorizontal from './nav-horizontal';
 import {useSettingsContext} from "@/shared-comps/settings";
 import {useResponsive} from "@/hooks/use-responsive";
 import {useBoolean} from "@/hooks/use-boolean";
+import React from "react";
+
 
 // ----------------------------------------------------------------------
 

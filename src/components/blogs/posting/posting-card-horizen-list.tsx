@@ -1,11 +1,10 @@
-import Button from '@mui/material/Button/Button';
 import React, {useEffect, useState} from 'react';
 import Carousel from 'react-material-ui-carousel';
 import {Grid} from '@mui/material';
 
 export default function PostingCardHorizenList({
-  children,
-}: {
+                                                 children,
+                                               }: {
   children: React.ElementType[];
 }) {
   //
@@ -18,7 +17,7 @@ export default function PostingCardHorizenList({
 
     const bundleSize = children.length > 4 ? children.length / 4 : 0;
     for (let i = 0; i <= bundleSize; i++) {
-      const tail = ((i * 4) + 4 ) >= children.length ? children.length : ((i * 4) + 4);
+      const tail = ((i * 4) + 4) >= children.length ? children.length : ((i * 4) + 4);
       postingBundle.push(children.slice(i * 4, tail));
     }
 
@@ -30,7 +29,7 @@ export default function PostingCardHorizenList({
       <Carousel
         autoPlay
         animation='slide'
-        NavButton={({ onClick, className, style, next, prev }) => {
+        NavButton={({onClick, className, style, next, prev}) => {
           // Other logic
 
           return (
