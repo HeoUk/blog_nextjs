@@ -9,7 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 //
 import { HEADER } from '../config-layout';
 import { useNavData } from './config-navigation';
-import { HeaderShadow } from '../_common';
+import { HeaderShadow } from '../../shared-comps/common-layout';
 import {NavSectionHorizontal} from "@/shared-comps/nav-section";
 import {bgBlur} from "@/theme/css";
 

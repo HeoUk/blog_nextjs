@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import { HEADER, NAV } from '../config-layout';
 import {
   SettingsButton,
-} from '../_common';
+} from '../../shared-comps/common-layout';
 
 import {useResponsive} from "@/hooks/use-responsive";
 import {useOffSetTop} from "@/hooks/use-off-set-top";

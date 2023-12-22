@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';
-import { NavToggleButton } from '../_common';
+import { NavToggleButton } from '../../shared-comps/common-layout';
 import {hideScroll} from "@/theme/css";
 import Logo from "@/shared-comps/logo";
 import {NavSectionMini} from "@/shared-comps/nav-section";

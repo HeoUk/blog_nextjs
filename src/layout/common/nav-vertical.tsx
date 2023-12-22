@@ -8,7 +8,7 @@ import Drawer from '@mui/material/Drawer';
 //
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';
-import { NavToggleButton } from '../_common';
+import { NavToggleButton } from '../../shared-comps/common-layout';
 import {useResponsive} from "@/hooks/use-responsive";
 import {usePathname} from "@/routes/hooks";
 import Scrollbar from "@/shared-comps/scrollbar";

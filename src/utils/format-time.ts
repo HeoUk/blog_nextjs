@@ -1,4 +1,5 @@
 import { format, getTime, formatDistanceToNow } from 'date-fns';
+import moment from "moment/moment";
 
 // ----------------------------------------------------------------------
 
@@ -26,4 +27,19 @@ export function fToNow(date: InputValue) {
         addSuffix: true,
       })
     : '';
+}
+
+export function getSearchDate() {
+  //str1.padStart(2, '0')
+  const currnetDate = moment();
+  const dateList = [];
+
+  const date = currnetDate.format('yyyyMM');
+  dateList.push(date);
+  for (let i = 0; i < 5; i++) {
+    const date = currnetDate.subtract(1, 'M').format('yyyyMM');
+    dateList.push(date);
+  }
+
+  return dateList;
 }

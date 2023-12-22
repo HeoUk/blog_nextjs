@@ -4,12 +4,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-// theme
-// routes
-// hooks
-// components
 //
-import { HEADER } from '../config-layout';
+import { HEADER } from '@/layout/config-layout';
 import HeaderShadow from './header-shadow';
 import SettingsButton from './settings-button';
 import {useOffSetTop} from "@/hooks/use-off-set-top";

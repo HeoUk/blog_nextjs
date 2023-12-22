@@ -2,7 +2,7 @@
 import { useTheme } from '@mui/material/styles';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
-import { NAV } from '../config-layout';
+import { NAV } from '@/layout/config-layout';
 import {useSettingsContext} from "@/shared-comps/settings";
 import {useResponsive} from "@/hooks/use-responsive";
 import {bgBlur} from "@/theme/css";
