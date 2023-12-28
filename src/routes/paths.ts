@@ -1,10 +1,9 @@
-
 // ----------------------------------------------------------------------
 // const MOCK_ID = 'id';
 // const MOCK_TITLE = 'title';
 
 const ROOTS = {
-  BLOG: '/blogs'
+  BLOG: '/blogs',
 };
 
 // ----------------------------------------------------------------------
@@ -34,5 +33,10 @@ export const paths = {
     root: `${ROOTS.BLOG}`,
     myBlog: `${ROOTS.BLOG}/my-blog`,
     interest: `${ROOTS.BLOG}/interest`,
+  },
+  //POST
+  post: {
+    root: '/root',
+    details: (title: string) => `/blogs/1/posting/${title}`,
   },
 };
