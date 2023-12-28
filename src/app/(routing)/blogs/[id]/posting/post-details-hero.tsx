@@ -23,7 +23,17 @@ import { Posting } from '@/types/server/blog';
 
 // ----------------------------------------------------------------------
 
-export default function PostDetailsHero({ title }: Posting) {
+type Props = {
+  title: string;
+  image64: string;
+  registerDate: string;
+};
+
+export default function PostDetailsHero({
+  title,
+  image64,
+  registerDate,
+}: Props) {
   const theme = useTheme();
 
   const smUp = useResponsive('up', 'sm');
@@ -34,7 +44,7 @@ export default function PostDetailsHero({ title }: Posting) {
         height: 480,
         overflow: 'hidden',
         ...bgGradient({
-          imgUrl: '',
+          imgUrl: image64,
           startColor: `${alpha(theme.palette.grey[900], 0.64)} 0%`,
           endColor: `${alpha(theme.palette.grey[900], 0.64)} 100%`,
         }),
@@ -81,7 +91,7 @@ export default function PostDetailsHero({ title }: Posting) {
               <ListItemText
                 sx={{ color: 'common.white' }}
                 primary={'Name22'}
-                secondary={fDate('2023-10-23')}
+                secondary={fDate(registerDate)}
                 primaryTypographyProps={{ typography: 'subtitle1', mb: 0.5 }}
                 secondaryTypographyProps={{
                   color: 'inherit',

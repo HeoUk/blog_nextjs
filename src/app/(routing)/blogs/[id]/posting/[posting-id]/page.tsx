@@ -29,6 +29,10 @@ import PostCommentList from '../post-comment-list';
 import PostCommentForm from '../post-comment-form';
 import PostDetailsHero from '../post-details-hero';
 import { PostDetailsSkeleton } from '../post-skeleton';
+import { PostingTopper } from '@/components/blogs/posting-topper';
+import { fetchPostingDetail } from '@/hooks/blog-posting-hook';
+import { useEffect, useState } from 'react';
+import { Posting } from '@/types/client/blog';
 
 // ----------------------------------------------------------------------
 
@@ -36,10 +40,26 @@ type Props = {
   title: string;
 };
 
-export default function Page({ title }: Props) {
-  const { post, postError, postLoading } = useGetPost(title);
+export default function Page({
+  params,
+}: {
+  params: { id: string; 'posting-id': string };
+}) {
+  //
+  const [posting, setPosting] = useState({} as Posting);
 
-  const { latestPosts, latestPostsLoading } = useGetLatestPosts(title);
+  const postingDetailHook = fetchPostingDetail(
+    params['id'],
+    params['posting-id']
+  );
+  useEffect(() => {
+    postingDetailHook.then((postingDetail) => {
+      setPosting(postingDetail);
+    });
+  }, []);
+  // const { post, postError, postLoading } = useGetPost(title);
+
+  // const { latestPosts, latestPostsLoading } = useGetLatestPosts(title);
 
   const renderSkeleton = <PostDetailsSkeleton />;
 
@@ -47,7 +67,7 @@ export default function Page({ title }: Props) {
     <Container sx={{ my: 10 }}>
       <EmptyContent
         filled
-        title={`${postError?.message}`}
+        title='Empty Contents'
         action={
           <Button
             component={RouterLink}
@@ -63,13 +83,12 @@ export default function Page({ title }: Props) {
     </Container>
   );
 
-  const renderPost = post && (
+  const renderPost = posting && (
     <>
       <PostDetailsHero
-        title={post.title}
-        author={post.author}
-        coverUrl={post.coverUrl}
-        createdAt={post.createdAt}
+        title={posting.title}
+        image64={posting.image64}
+        registerDate={posting.registerDate}
       />
 
       <Container
@@ -91,7 +110,7 @@ export default function Page({ title }: Props) {
               href: paths.post.root,
             },
             {
-              name: post?.title,
+              name: posting?.title,
             },
           ]}
           sx={{ maxWidth: 720, mx: 'auto' }}
@@ -101,10 +120,11 @@ export default function Page({ title }: Props) {
       <Container maxWidth={false}>
         <Stack sx={{ maxWidth: 720, mx: 'auto' }}>
           <Typography variant='subtitle1' sx={{ mb: 5 }}>
-            {post.description}
+            {posting.title}
+            {/* description */}
           </Typography>
 
-          <Markdown children={post.content} />
+          <Markdown children={posting.contents} />
 
           <Stack
             spacing={3}
@@ -115,7 +135,7 @@ export default function Page({ title }: Props) {
             }}
           >
             <Stack direction='row' flexWrap='wrap' spacing={1}>
-              {post.tags.map((tag) => (
+              {posting?.tags?.map((tag) => (
                 <Chip key={tag} label={tag} variant='soft' />
               ))}
             </Stack>
@@ -131,19 +151,19 @@ export default function Page({ title }: Props) {
                     checkedIcon={<Iconify icon='solar:heart-bold' />}
                   />
                 }
-                label={fShortenNumber(post.totalFavorites)}
+                label={fShortenNumber(posting.like)}
                 sx={{ mr: 1 }}
               />
 
-              <AvatarGroup>
-                {post.favoritePerson.map((person: any) => (
+              {/* <AvatarGroup>
+                {posting.favoritePerson.map((person: any) => (
                   <Avatar
                     key={person.name}
                     alt={person.name}
                     src={person.avatarUrl}
                   />
                 ))}
-              </AvatarGroup>
+              </AvatarGroup> */}
             </Stack>
           </Stack>
 
@@ -151,7 +171,7 @@ export default function Page({ title }: Props) {
             <Typography variant='h4'>Comments</Typography>
 
             <Typography variant='subtitle2' sx={{ color: 'text.disabled' }}>
-              ({post.comments.length})
+              ({1}){/* ({post.comments.length}) */}
             </Typography>
           </Stack>
 
@@ -159,7 +179,8 @@ export default function Page({ title }: Props) {
 
           <Divider sx={{ mt: 5, mb: 2 }} />
 
-          <PostCommentList comments={post.comments} />
+          <PostCommentList comments={[]} />
+          {/* <PostCommentList comments={post.comments} /> */}
         </Stack>
       </Container>
     </>
@@ -170,25 +191,26 @@ export default function Page({ title }: Props) {
       <Typography variant='h4' sx={{ mb: 5 }}>
         Recent Posts
       </Typography>
-
-      <PostList
+      {/*       <PostList
         posts={latestPosts.slice(latestPosts.length - 4)}
         loading={latestPostsLoading}
         disabledIndex
-      />
+      /> */}
+      <PostList posts={[].slice([].length - 4)} loading={true} disabledIndex />
     </>
   );
 
   return (
     <>
-      {postLoading && renderSkeleton}
+      <PostingTopper />
+      {/* {postLoading && renderSkeleton} */}
 
-      {postError && renderError}
+      {/* {postError && renderError} */}
 
-      {post && renderPost}
+      {posting && renderPost}
 
       <Container sx={{ pb: 15 }}>
-        {!!latestPosts.length && renderLatestPosts}
+        {/* {!!latestPosts.length && renderLatestPosts} */}
       </Container>
     </>
   );
