@@ -27,12 +27,16 @@ type Props = {
   title: string;
   image64: string;
   registerDate: string;
+  userName: string;
+  userImage: string;
 };
 
 export default function PostDetailsHero({
   title,
   image64,
   registerDate,
+  userName,
+  userImage,
 }: Props) {
   const theme = useTheme();
 
@@ -83,14 +87,14 @@ export default function PostDetailsHero({
               }}
             >
               <Avatar
-                alt={'Name1'}
-                src={''}
+                alt={userName}
+                src={userImage}
                 sx={{ width: 64, height: 64, mr: 2 }}
               />
 
               <ListItemText
                 sx={{ color: 'common.white' }}
-                primary={'Name22'}
+                primary={userName}
                 secondary={fDate(registerDate)}
                 primaryTypographyProps={{ typography: 'subtitle1', mb: 0.5 }}
                 secondaryTypographyProps={{

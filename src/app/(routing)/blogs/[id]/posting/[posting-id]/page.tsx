@@ -30,15 +30,16 @@ import PostCommentForm from '../post-comment-form';
 import PostDetailsHero from '../post-details-hero';
 import { PostDetailsSkeleton } from '../post-skeleton';
 import { PostingTopper } from '@/components/blogs/posting-topper';
-import { fetchPostingDetail } from '@/hooks/blog-posting-hook';
+import {
+  fetchComments,
+  fetchPostingDetail,
+  fetchRecentPostings,
+} from '@/hooks/blog-posting-hook';
 import { useEffect, useState } from 'react';
 import { Posting } from '@/types/client/blog';
+import { Comment } from '@/types/client/comment';
 
 // ----------------------------------------------------------------------
-
-type Props = {
-  title: string;
-};
 
 export default function Page({
   params,
@@ -47,16 +48,35 @@ export default function Page({
 }) {
   //
   const [posting, setPosting] = useState({} as Posting);
+  const [postingLoading, setPostingLoading] = useState(true);
+  const [recentPosting, setRecentPosting] = useState([] as Posting[]);
+  const [comments, setComments] = useState([] as Comment[]);
+  const [recentPostingLoading, setRecentPostingLoading] = useState(true);
 
   const postingDetailHook = fetchPostingDetail(
     params['id'],
     params['posting-id']
   );
+
+  const recentPostingsHook = fetchRecentPostings(params['id']);
+  const commentsHook = fetchComments(params['id'], params['posting-id']);
+
   useEffect(() => {
     postingDetailHook.then((postingDetail) => {
       setPosting(postingDetail);
+      setPostingLoading(false);
+    });
+
+    recentPostingsHook.then((posting) => {
+      setRecentPosting(posting);
+      setRecentPostingLoading(false);
+    });
+
+    commentsHook.then((comments) => {
+      setComments(comments);
     });
   }, []);
+
   // const { post, postError, postLoading } = useGetPost(title);
 
   // const { latestPosts, latestPostsLoading } = useGetLatestPosts(title);
@@ -86,6 +106,8 @@ export default function Page({
   const renderPost = posting && (
     <>
       <PostDetailsHero
+        userName={posting.blogUserName}
+        userImage={posting.blogIcon64}
         title={posting.title}
         image64={posting.image64}
         registerDate={posting.registerDate}
@@ -102,15 +124,15 @@ export default function Page({
         <CustomBreadcrumbs
           links={[
             {
-              name: 'Home',
+              name: 'YALLOO',
               href: '/',
             },
             {
-              name: 'Blog',
+              name: '블로그',
               href: paths.post.root,
             },
             {
-              name: posting?.title,
+              name: posting?.blogName,
             },
           ]}
           sx={{ maxWidth: 720, mx: 'auto' }}
@@ -171,7 +193,7 @@ export default function Page({
             <Typography variant='h4'>Comments</Typography>
 
             <Typography variant='subtitle2' sx={{ color: 'text.disabled' }}>
-              ({1}){/* ({post.comments.length}) */}
+              ({comments.length}){/* ({post.comments.length}) */}
             </Typography>
           </Stack>
 
@@ -179,8 +201,7 @@ export default function Page({
 
           <Divider sx={{ mt: 5, mb: 2 }} />
 
-          <PostCommentList comments={[]} />
-          {/* <PostCommentList comments={post.comments} /> */}
+          <PostCommentList comments={comments} />
         </Stack>
       </Container>
     </>
@@ -191,26 +212,29 @@ export default function Page({
       <Typography variant='h4' sx={{ mb: 5 }}>
         Recent Posts
       </Typography>
-      {/*       <PostList
-        posts={latestPosts.slice(latestPosts.length - 4)}
-        loading={latestPostsLoading}
+      <PostList
+        posts={
+          recentPosting.length < 4
+            ? recentPosting
+            : recentPosting.slice(recentPosting.length - 4)
+        }
+        loading={recentPostingLoading}
         disabledIndex
-      /> */}
-      <PostList posts={[].slice([].length - 4)} loading={true} disabledIndex />
+      />
     </>
   );
 
   return (
     <>
       <PostingTopper />
-      {/* {postLoading && renderSkeleton} */}
+      {postingLoading && renderSkeleton}
 
       {/* {postError && renderError} */}
 
       {posting && renderPost}
 
       <Container sx={{ pb: 15 }}>
-        {/* {!!latestPosts.length && renderLatestPosts} */}
+        {!!recentPosting.length && renderLatestPosts}
       </Container>
     </>
   );

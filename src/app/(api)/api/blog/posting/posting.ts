@@ -11,23 +11,40 @@ async function findById(
     await client.connect();
 
     const query = {
-      id: blogId,
-      'postings.id': postingId,
+      blogId: blogId,
+      id: postingId,
     };
-
-    const filter = {
-      
-    }
 
     const result = await client
       .db('yalloo')
-      .collection('users')
+      .collection('posting')
       .findOne<Posting>(query);
 
-    return result;
+    return result ? result : null;
   } finally {
     await client.close();
   }
 }
 
-export { findById };
+async function findRecentPostings(blogId: string): Promise<Posting[]> {
+  const client = await getClient();
+
+  try {
+    await client.connect();
+
+    const query = {
+      blogId: blogId,
+    };
+
+    const result = await client
+      .db('yalloo')
+      .collection('posting')
+      .find<Posting>(query).toArray();
+
+    return result ? result : [];
+  } finally {
+    await client.close();
+  }
+}
+
+export { findById, findRecentPostings };

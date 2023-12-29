@@ -22,7 +22,7 @@ import Image from '@/components/blogs/image';
 import Iconify from '@/shared-comps/iconify';
 import TextMaxLine from '@/shared-comps/text-max-line';
 // types
-import { Posting } from '@/types/server/blog';
+import { Posting } from '@/types/client/blog';
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +37,13 @@ export default function PostItem({ post, index }: Props) {
   const mdUp = useResponsive('up', 'md');
 
   const {
-    // coverUrl,
+    blogIcon64,
+    image64,
+    blogId,
+    blogUserName,
+    blogName,
+    registerDate,
+    tags,
     title,
     // totalViews,
     // totalComments,
@@ -52,8 +58,8 @@ export default function PostItem({ post, index }: Props) {
     return (
       <Card>
         <Avatar
-          alt={'name'}
-          src={''}
+          alt={'posting Image'}
+          src={image64}
           sx={{
             top: 24,
             left: 24,
@@ -73,7 +79,7 @@ export default function PostItem({ post, index }: Props) {
 
         <Image
           alt={title}
-          src={'/'}
+          src={blogIcon64}
           overlay={alpha(theme.palette.grey[900], 0.48)}
           sx={{
             width: 1,
@@ -99,8 +105,8 @@ export default function PostItem({ post, index }: Props) {
         />
 
         <Avatar
-          alt={'name'}
-          src={'/'}
+          alt={'Blog Icon'}
+          src={blogIcon64}
           sx={{
             left: 24,
             zIndex: 9,
@@ -109,7 +115,7 @@ export default function PostItem({ post, index }: Props) {
           }}
         />
 
-        <Image alt={title} src={'/'} ratio='4/3' />
+        <Image alt={title} src={image64} ratio='4/3' />
       </Box>
 
       <PostContent
@@ -117,7 +123,7 @@ export default function PostItem({ post, index }: Props) {
         totalViews={1}
         totalComments={2}
         totalShares={3}
-        createdAt={new Date()}
+        createdAt={fDate(registerDate)}
       />
     </Card>
   );

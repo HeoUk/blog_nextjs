@@ -2,47 +2,50 @@
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 // types
-import { Posting } from '@/types/server/blog';
+import { Comment } from '@/types/client/comment';
 //
 import PostCommentItem from './post-comment-item';
+// utils
+import { fDate } from '@/utils/format-time';
+import dayjs from 'dayjs';
 
 // ----------------------------------------------------------------------
 
 type Props = {
-  comments: Posting[];
+  comments: Comment[];
 };
 
+// 댓글은 5개씩 페이지네이션
 export default function PostCommentList({ comments }: Props) {
   return (
     <>
       <>
         {comments.map((comment) => {
-          const { id, 
-            // replyComment, name, users, message, avatarUrl, postedAt 
+          const {
+            id,
+            // replyComment, name, users, message, avatarUrl, postedAt
           } = comment;
 
-          const hasReply = true; //!!replyComment.length;
+          const hasReply = !!comment.reply.length;
 
           return (
             <Box key={id}>
               <PostCommentItem
-                name={'name1'}
-                message={'message'}
-                postedAt={new Date()}
+                name={comment.userName}
+                message={comment.comment}
+                postedAt={dayjs(comment.registerDate).toDate()}
                 avatarUrl={'avatarUrl'}
               />
               {hasReply &&
-                [{id: '1', name: "name1",userId: '1', message: "message", postedAt: new Date(), tagUser: "tagUser"}].map((reply) => {
-                  const userReply = [{id: '1', name: 'replyUserName', avatarUrl: "/"}].find((user) => user.id === reply.userId);
-
+                comment.reply.map((r) => {
                   return (
                     <PostCommentItem
-                      key={reply.id}
-                      name={userReply?.name || ''}
-                      message={reply.message}
-                      postedAt={reply.postedAt}
-                      avatarUrl={userReply?.avatarUrl || ''}
-                      tagUser={reply.tagUser}
+                      key={r.userId}
+                      name={r.userName}
+                      message={r.comment}
+                      postedAt={dayjs(r.registerDate).toDate()}
+                      avatarUrl={r.userIcon64}
+                      tagUser={comment.userName}
                       hasReply
                     />
                   );
@@ -52,7 +55,11 @@ export default function PostCommentList({ comments }: Props) {
         })}
       </>
 
-      <Pagination count={8} sx={{ my: 5, mx: 'auto' }} />
+      <Pagination
+        defaultPage={1}
+        count={comments.length < 5 ? 1 : comments.length / 5}
+        sx={{ my: 5, mx: 'auto' }}
+      />
     </>
   );
 }

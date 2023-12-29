@@ -11,7 +11,7 @@ async function findById(
     await client.connect();
 
     var query = {
-      id: blogId,
+      blogId: blogId,
       'postings.id': postingId,
     };
     console.log('HHHHHHHHERERRERE');
