@@ -1,4 +1,4 @@
-import { findById } from '@/app/(api)/api/blog/posting/posting';
+import { findById } from '@/app/api/blog/posting/posting';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

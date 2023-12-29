@@ -19,7 +19,7 @@ import { bgGradient } from '@/theme/css';
 // components
 import Iconify from '@/components/blogs/iconify';
 // types
-import { Posting } from '@/types/server/blog';
+import { Posting } from '@/types/client/posting';
 
 // ----------------------------------------------------------------------
 

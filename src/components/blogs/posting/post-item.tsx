@@ -22,7 +22,7 @@ import Image from '@/components/blogs/image';
 import Iconify from '@/shared-comps/iconify';
 import TextMaxLine from '@/shared-comps/text-max-line';
 // types
-import { Posting } from '@/types/client/blog';
+import { Posting } from '@/types/client/posting';
 
 // ----------------------------------------------------------------------
 

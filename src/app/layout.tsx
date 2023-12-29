@@ -2,7 +2,7 @@
 import 'simplebar-react/dist/simplebar.min.css';
 
 // fonts
-import '../../public/fonts/index.css'
+import '../../public/fonts/index.css';
 
 // lightbox
 import 'yet-another-react-lightbox/styles.css';
@@ -22,11 +22,12 @@ import 'slick-carousel/slick/slick-theme.css';
 // image
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
 // import './globals.css';
-import {SettingsDrawer, SettingsProvider} from "@/shared-comps/settings";
-import {primaryFont} from "@/theme/typography";
-import ThemeProvider from "@/theme";
+import { SettingsDrawer, SettingsProvider } from '@/shared-comps/settings';
+import { primaryFont } from '@/theme/typography';
+import ThemeProvider from '@/theme';
+import { NextAuthProvider } from './providers';
 
 // import {Inter} from 'next/font/google';
 // const inter = Inter({subsets: ['latin']});
@@ -34,8 +35,7 @@ import ThemeProvider from "@/theme";
 
 export const metadata: Metadata = {
   title: 'Yalloo Blogs',
-  description:
-    'Start Yalloo Blogs~',
+  description: 'Start Yalloo Blogs~',
   keywords: 'react,material,kit,application,dashboard,admin,template',
   themeColor: '#000000',
   manifest: '/manifest.json',
@@ -65,29 +65,31 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                     children,
-                                   }: {
+  children,
+}: {
   children: React.ReactNode;
 }) {
   return (
     <html lang='en' className={primaryFont.className}>
-    <body>
-    <SettingsProvider
-      defaultSettings={{
-        themeMode: 'light', // 'light' | 'dark'
-        themeDirection: 'ltr', //  'rtl' | 'ltr'
-        themeContrast: 'default', // 'default' | 'bold'
-        themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
-        themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
-        themeStretch: false,
-      }}
-    >
-      <ThemeProvider>
-        <SettingsDrawer/>
-        {children}
-      </ThemeProvider>
-    </SettingsProvider>
-    </body>
+      <body>
+        <NextAuthProvider>
+          <SettingsProvider
+            defaultSettings={{
+              themeMode: 'light', // 'light' | 'dark'
+              themeDirection: 'ltr', //  'rtl' | 'ltr'
+              themeContrast: 'default', // 'default' | 'bold'
+              themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
+              themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+              themeStretch: false,
+            }}
+          >
+            <ThemeProvider>
+              <SettingsDrawer />
+              {children}
+            </ThemeProvider>
+          </SettingsProvider>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }

@@ -1,17 +1,20 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import {BlogCategory, CardType} from '@/components/blogs/actions';
+import React, { useEffect, useState } from 'react';
+import { BlogCategory, CardType } from '@/components/blogs/actions';
 // import BarHorizenMenu from '@/components/bar/horizen/menu/BarHorizenMenu';
 // import AdvertisementHorizenBar from '@/components/bar/horizen/banner/main-banner';
-import {Blog, Posting} from '@/types/server/blog';
-import {Banner} from '@/types/server/banner';
+import { Blog, Posting } from '@/types/server/blog';
+import { Banner } from '@/types/server/banner';
 import RecommendBlog from './recomend-blog';
 import RecommendBlogInfoBar from './recomment-blog-info-bar';
 import PostingCard from '@/components/blogs/posting/posting-card';
 import PostingCardHorizenList from '@/components/blogs/posting/posting-card-horizen-list';
-import MainBanner from "@/components/blogs/bar/horizen/banner/main-banner";
-import BarHorizenMenu from "@/components/blogs/bar/horizen/menu/BarHorizenMenu";
+import MainBanner from '@/components/blogs/bar/horizen/banner/main-banner';
+import BarHorizenMenu from '@/components/blogs/bar/horizen/menu/BarHorizenMenu';
+import { authConfig, loginIsRequiredServer } from '@/lib/auth';
+import { getServerSession } from 'next-auth/next';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   cards: CardType[];
@@ -23,6 +26,13 @@ interface Props {
 
 export default function RecomendBlogsList(props: Props) {
   //
+  const session = useSession();
+  // await loginIsRequiredServer();
+  // const session = await getServerSession(authConfig);
+  // getClientSession(authConfig);
+  console.log('SESSION');
+  console.log(session);
+
   const { cards, currentDateList, blogs, banner, blogCategories } = props;
 
   const [searchDate, setSearchDate] = useState(currentDateList[0]);
@@ -84,13 +94,18 @@ export default function RecomendBlogsList(props: Props) {
               return (
                 <PostingCard
                   title={posting.title}
-                  blogImage={
-                    blogs.filter(
-                      (blog) => blog.id === posting.id.split('-')[0]
-                    )[0].image64
-                  }
+                  blogImage={''}
                   postingImage={posting.image64}
                 />
+                // <PostingCard
+                //   title={posting.title}
+                //   blogImage={
+                //     blogs.filter(
+                //       (blog) => blog.id === posting.id.split('-')[0]
+                //     )[0].image64
+                //   }
+                //   postingImage={posting.image64}
+                // />
               );
             })}
           </PostingCardHorizenList>

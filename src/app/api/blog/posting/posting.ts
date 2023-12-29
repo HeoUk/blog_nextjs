@@ -1,5 +1,5 @@
 import { getClient } from '@/api/_db/mongodb';
-import { Posting } from '@/types/client/blog';
+import { Posting } from '@/types/client/posting';
 
 async function findById(
   blogId: string,

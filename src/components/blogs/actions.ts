@@ -26,7 +26,6 @@ async function findAll(): Promise<CardType[]> {
       .collection('users')
       .find<CardType>({})
       .toArray();
-    console.log(result);
 
     return result;
   } finally {
@@ -47,7 +46,6 @@ async function findById(id: string): Promise<CardType> {
       .collection('users')
       .find<CardType>(query)
       .toArray();
-    console.log(result);
 
     return result[0];
   } finally {

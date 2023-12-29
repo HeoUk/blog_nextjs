@@ -16,7 +16,6 @@ async function findBlogByDate(date: string): Promise<Blog[]> {
       .collection('blog')
       .find<Blog>(query)
       .toArray();
-    console.log(result);
 
     return result;
   } finally {

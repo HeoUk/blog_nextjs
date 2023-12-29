@@ -1,5 +1,5 @@
 import { getClient } from '@/api/_db/mongodb';
-import { Posting } from '@/types/client/blog';
+import { Posting } from '@/types/client/posting';
 
 async function findById(
   blogId: string,
@@ -14,7 +14,7 @@ async function findById(
       blogId: blogId,
       'postings.id': postingId,
     };
-    console.log('HHHHHHHHERERRERE');
+
     const result = await client
       .db('yalloo')
       .collection('blog')

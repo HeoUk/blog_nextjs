@@ -7,16 +7,17 @@ import IconButton from '@mui/material/IconButton';
 
 //
 import { HEADER, NAV } from '../config-layout';
-import {
-  SettingsButton,
-} from '../../shared-comps/common-layout';
+import { SettingsButton } from '../../shared-comps/common-layout';
 
-import {useResponsive} from "@/hooks/use-responsive";
-import {useOffSetTop} from "@/hooks/use-off-set-top";
-import {useSettingsContext} from "@/shared-comps/settings";
-import Logo from "@/shared-comps/logo";
-import SvgColor from "@/shared-comps/svg-color";
-import {bgBlur} from "@/theme/css";
+import { useResponsive } from '@/hooks/use-responsive';
+import { useOffSetTop } from '@/hooks/use-off-set-top';
+import { useSettingsContext } from '@/shared-comps/settings';
+import Logo from '@/shared-comps/logo';
+import SvgColor from '@/shared-comps/svg-color';
+import { bgBlur } from '@/theme/css';
+import { signOut } from 'next-auth/react';
+import Iconify from '@/shared-comps/iconify';
+import { LogoutButton } from '@/shared-comps/common-layout/logout-button';
 
 // ----------------------------------------------------------------------
 
@@ -44,18 +45,20 @@ export default function Header({ onOpenNav }: Props) {
       {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
 
       {!lgUp && (
-        <IconButton onClick={onOpenNav}>
-          <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
-        </IconButton>
+        <>
+          <IconButton onClick={onOpenNav}>
+            <SvgColor src='/assets/icons/navbar/ic_menu_item.svg' />
+          </IconButton>
+        </>
       )}
 
       {/*<Searchbar />*/}
 
       <Stack
         flexGrow={1}
-        direction="row"
-        alignItems="center"
-        justifyContent="flex-end"
+        direction='row'
+        alignItems='center'
+        justifyContent='flex-end'
         spacing={{ xs: 0.5, sm: 1 }}
       >
         {/*<LanguagePopover />*/}
@@ -63,6 +66,8 @@ export default function Header({ onOpenNav }: Props) {
         {/*<NotificationsPopover />*/}
 
         {/*<ContactsPopover />*/}
+
+        <LogoutButton />
 
         <SettingsButton />
 

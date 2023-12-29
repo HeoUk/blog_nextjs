@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export type Comment = {
   id: string;
   target: string;
@@ -18,3 +20,18 @@ export type CommentReply = {
   comment: string;
   registerDate: string;
 };
+
+export function toComment(obj: any): Comment {
+  return {
+    id: '',
+    target: obj.target,
+    blogId: obj.blogId,
+    targetId: obj.targetId,
+    userId: '',
+    userName: '',
+    userIcon64: '',
+    comment: obj.comment,
+    registerDate: dayjs().format('YYYY-MM-DD'),
+    reply: [],
+  };
+}

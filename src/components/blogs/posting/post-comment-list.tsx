@@ -15,16 +15,13 @@ type Props = {
   comments: Comment[];
 };
 
-// 댓글은 5개씩 페이지네이션
+
 export default function PostCommentList({ comments }: Props) {
   return (
     <>
       <>
         {comments.map((comment) => {
-          const {
-            id,
-            // replyComment, name, users, message, avatarUrl, postedAt
-          } = comment;
+          const { id } = comment;
 
           const hasReply = !!comment.reply.length;
 

@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 // utils
 import { endpoints } from '@/api/end-point';
 // types
-import { Posting } from '@/types/server/blog';
+import { Posting } from '@/types/client/posting';
 
 // ----------------------------------------------------------------------
 
