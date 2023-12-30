@@ -1,8 +1,7 @@
-import {createCollection} from '@/api/_db/mongodb';
+import { createCollection } from '@/_db/mongodb';
 
 async function findBlogByDate() {
   // const client = await createCollection('blog');
-
   // try {
   //   await client.connect();
   //

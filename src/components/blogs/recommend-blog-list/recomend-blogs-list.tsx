@@ -26,12 +26,6 @@ interface Props {
 
 export default function RecomendBlogsList(props: Props) {
   //
-  const session = useSession();
-  // await loginIsRequiredServer();
-  // const session = await getServerSession(authConfig);
-  // getClientSession(authConfig);
-  console.log('SESSION');
-  console.log(session);
 
   const { cards, currentDateList, blogs, banner, blogCategories } = props;
 

@@ -4,9 +4,9 @@ import { redirect, useRouter } from 'next/navigation';
 
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import GithubProvider from 'next-auth/providers/github';
-import { findByEmail } from '@/app/api/users/users';
+import { synchorinizeAccount } from '@/app/api/users/users';
 import { Users } from '@/types/server/users';
+import bcrypt from 'bcrypt';
 
 export const authConfig: NextAuthOptions = {
   providers: [
@@ -23,19 +23,19 @@ export const authConfig: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password)
           return null;
-        console.log('Auth~~~~~~~~');
         const response = await fetch('http://localhost:3000/api/users', {
           method: 'POST',
           body: JSON.stringify({ email: credentials.email }),
         });
         const dbUser = await response.json().then((result: Users) => result);
 
-        //Verify Password here
-        //We are going to use a simple === operator
-        //In production DB, passwords should be encrypted using something like bcrypt...
-        if (dbUser && dbUser.password === credentials.password) {
+        /** bcrypt 복호화 사용 */
+        if (
+          dbUser &&
+          bcrypt.compareSync(dbUser.password, credentials.password)
+        ) {
           const { password, createdAt, id, ...dbUserWithoutPassword } = dbUser;
-          return dbUserWithoutPassword as User;
+          return dbUserWithoutPassword as Users;
         }
 
         return null;
@@ -48,15 +48,19 @@ export const authConfig: NextAuthOptions = {
   ],
 };
 
+/* 서버 컴포넌트에서 로그인 상태 검증 시 */
 export async function loginIsRequiredServer() {
   const session = await getServerSession(authConfig);
   if (!session) return redirect('/');
+  await synchorinizeAccount(session);
 }
 
+/* 클라이언트 컴포넌트에서 로그인 상태 검증 시 */
 export function loginIsRequiredClient() {
   if (typeof window !== 'undefined') {
     const session = useSession();
     const router = useRouter();
     if (!session) router.push('/');
+    synchorinizeAccount(session as any);
   }
 }

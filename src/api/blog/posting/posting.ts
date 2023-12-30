@@ -1,4 +1,4 @@
-import { getClient } from '@/api/_db/mongodb';
+import { getClient } from '@/_db/mongodb';
 import { Posting } from '@/types/client/posting';
 
 async function findById(

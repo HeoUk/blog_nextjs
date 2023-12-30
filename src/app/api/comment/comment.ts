@@ -1,4 +1,4 @@
-import { getClient } from '@/api/_db/mongodb';
+import { getClient } from '@/_db/mongodb';
 
 async function findAllByPostingId(
   target: string,
@@ -28,4 +28,4 @@ async function findAllByPostingId(
   }
 }
 
-export {findAllByPostingId};
+export { findAllByPostingId };

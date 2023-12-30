@@ -1,4 +1,4 @@
-import { getClient } from '@/api/_db/mongodb';
+import { getClient } from '@/_db/mongodb';
 import { Posting } from '@/types/client/posting';
 
 async function findById(
@@ -39,7 +39,8 @@ async function findRecentPostings(blogId: string): Promise<Posting[]> {
     const result = await client
       .db('yalloo')
       .collection('posting')
-      .find<Posting>(query).toArray();
+      .find<Posting>(query)
+      .toArray();
 
     return result ? result : [];
   } finally {

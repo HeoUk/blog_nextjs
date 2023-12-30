@@ -1,4 +1,4 @@
-import {getClient} from '@/api/_db/mongodb';
+import { getClient } from '@/_db/mongodb';
 
 // const uri =
 //   'mongodb+srv://Cluster34912:qkrtkdgus@cluster34912.qd9uvtg.mongodb.net/?retryWrites=true&w=majority';
