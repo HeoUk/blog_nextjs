@@ -12,7 +12,7 @@ import PostingCard from '@/components/blogs/posting/posting-card';
 import PostingCardHorizenList from '@/components/blogs/posting/posting-card-horizen-list';
 import MainBanner from '@/components/blogs/bar/horizen/banner/main-banner';
 import BarHorizenMenu from '@/components/blogs/bar/horizen/menu/BarHorizenMenu';
-import { authConfig, loginIsRequiredServer } from '@/lib/auth';
+import { authConfig, loginIsRequiredServer } from '@/utils/auth';
 import { getServerSession } from 'next-auth/next';
 import { useSession } from 'next-auth/react';
 

@@ -1,5 +1,5 @@
-import { authConfig } from "@/lib/auth";
-import NextAuth from "next-auth/next";
+import { authConfig } from '@/utils/auth';
+import NextAuth from 'next-auth/next';
 
 const handler = NextAuth(authConfig);
 

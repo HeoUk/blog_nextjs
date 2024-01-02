@@ -38,6 +38,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Posting } from '@/types/client/posting';
 import { Comment } from '@/types/client/comment';
+import { DefaultComment } from '../default-comment/default-comment';
 
 // ----------------------------------------------------------------------
 
@@ -45,16 +46,16 @@ type Props = {
   blogId: string;
   postingId: string;
   posting: Posting | null;
+  comments: Comment[];
 };
 
 export default function PostDetail(props: Props) {
   //
-  const { blogId, postingId, posting } = props;
+  const { blogId, postingId, posting, comments } = props;
 
   // const [posting, setPosting] = useState({} as Posting);
   // const [postingLoading, setPostingLoading] = useState(true);
   const [recentPosting, setRecentPosting] = useState([] as Posting[]);
-  const [comments, setComments] = useState([] as Comment[]);
   const [recentPostingLoading, setRecentPostingLoading] = useState(true);
 
   // const postingDetailHook = fetchPostingDetail(
@@ -74,10 +75,6 @@ export default function PostDetail(props: Props) {
     recentPostingsHook.then((posting) => {
       setRecentPosting(posting);
       setRecentPostingLoading(false);
-    });
-
-    commentsHook.then((comments) => {
-      setComments(comments);
     });
   }, []);
 
@@ -201,11 +198,7 @@ export default function PostDetail(props: Props) {
             </Typography>
           </Stack>
 
-          <PostCommentForm />
-
-          <Divider sx={{ mt: 5, mb: 2 }} />
-
-          <PostCommentList comments={comments} />
+          <DefaultComment comments={comments} />
         </Stack>
       </Container>
     </>

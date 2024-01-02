@@ -6,7 +6,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Button from '@mui/material/Button';
 import { getServerSession } from 'next-auth';
-import { authConfig } from '@/lib/auth';
+import { authConfig } from '@/utils/auth';
 import ModernLoginView from '@/shared-comps/login/modern-login-view';
 
 export default async function Home() {

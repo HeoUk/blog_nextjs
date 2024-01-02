@@ -8,7 +8,7 @@ import { getSearchDate } from '@/utils/format-time';
 import { findAllBanners } from '@/components/blogs/bar/horizen/banner/api/action';
 import { useSession } from 'next-auth/react';
 import { getServerSession } from 'next-auth';
-import { authConfig, loginIsRequiredServer } from '@/lib/auth';
+import { authConfig, loginIsRequiredServer } from '@/utils/auth';
 
 export default async function Page({
   params,
