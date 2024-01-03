@@ -12,7 +12,7 @@ async function findAllBanners(): Promise<Banner[]> {
       .collection('MainBanner')
       .find<Banner>({})
       .toArray();
-    console.log(result);
+
 
     return result;
   } finally {

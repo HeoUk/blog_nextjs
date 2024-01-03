@@ -19,7 +19,9 @@ import dayjs from 'dayjs';
 async function findAllByPostingId(
   target: string,
   blogId: string,
-  postingId: string
+  postingId: string,
+  offset: number,
+  limit: number
 ): Promise<Comment[]> {
   const client = await getClient();
 
@@ -35,9 +37,11 @@ async function findAllByPostingId(
     const result = await client
       .db('yalloo')
       .collection('comment')
-      .find<Comment>(query)
+      .find<Comment>(query, { sort: { registerDate: -1 } })
+      // .skip(offset)
+      // .limit(limit)
       .toArray();
-
+    console.log(result);
     return result ? result : [];
   } finally {
     await client.close();

@@ -24,6 +24,8 @@ export const endpoints = {
     search: '/api/product/search',
   },
   comment: {
-    register: {url: '/api/comment', method: 'POST'}
-  }
+    register: { url: '/api/comment', method: 'POST' },
+    findAll: { url: '/api/comment', method: 'GET' },
+    counts: { url: '/api/comment/counts', method: 'GET' },
+  },
 };

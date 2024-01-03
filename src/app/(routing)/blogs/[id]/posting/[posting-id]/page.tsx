@@ -15,14 +15,12 @@ export default async function Page({
   const postingId = params['posting-id'];
 
   const posting = await findById(blogId, postingId);
-  const comments = await commentLogic.findAllByPostingId('posting', blogId, postingId);
 
   return (
     <PostDetail
       blogId={blogId}
       postingId={postingId}
       posting={posting}
-      comments={comments}
     />
   );
 }

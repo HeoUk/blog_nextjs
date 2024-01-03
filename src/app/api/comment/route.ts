@@ -4,15 +4,19 @@ import { toComment } from '@/types/client/comment';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const target = searchParams.get('target') ?? '';
-  const blogId = searchParams.get('blog') ?? '';
-  const targetId = searchParams.get('id') ?? '';
+  const blogId = searchParams.get('blogId') ?? '';
+  const targetId = searchParams.get('targetId') ?? '';
+  const offset = searchParams.get('offset') ?? 0;
+  const limit = searchParams.get('limit') ?? 8;
 
-  const comment = await commentLogic.findAllByPostingId(
+  const comments = await commentLogic.findAllByPostingId(
     target,
     blogId,
-    targetId
+    targetId,
+    Number(offset),
+    Number(limit)
   );
-  return Response.json(comment);
+  return Response.json(comments);
 }
 
 export async function POST(request: Request) {

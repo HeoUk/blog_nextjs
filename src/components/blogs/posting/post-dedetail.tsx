@@ -35,7 +35,7 @@ import {
   fetchPostingDetail,
   fetchRecentPostings,
 } from '@/hooks/blog-posting-hook';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Posting } from '@/types/client/posting';
 import { Comment } from '@/types/client/comment';
 import { DefaultComment } from '../default-comment/default-comment';
@@ -46,20 +46,20 @@ type Props = {
   blogId: string;
   postingId: string;
   posting: Posting | null;
-  comments: Comment[];
 };
 
 export default function PostDetail(props: Props) {
   /** PROPS */
-  const { blogId, postingId, posting, comments } = props;
+  const { blogId, postingId, posting } = props;
 
   /** STATE */
   const [recentPosting, setRecentPosting] = useState([] as Posting[]);
   const [recentPostingLoading, setRecentPostingLoading] = useState(true);
 
+
   /** HOOK */
   const recentPostingsHook = fetchRecentPostings(blogId);
-  const commentsHook = fetchComments(blogId, postingId);
+
 
   /** EFFECTS */
   useEffect(() => {
@@ -177,15 +177,11 @@ export default function PostDetail(props: Props) {
             </Stack>
           </Stack>
 
-          <Stack direction='row' sx={{ mb: 3, mt: 5 }}>
-            <Typography variant='h4'>Comments</Typography>
-
-            <Typography variant='subtitle2' sx={{ color: 'text.disabled' }}>
-              ({comments.length}){/* ({post.comments.length}) */}
-            </Typography>
-          </Stack>
-
-          <DefaultComment comments={comments} blogId={blogId} target='posting' targetId={postingId} />
+          <DefaultComment
+            blogId={blogId}
+            target='posting'
+            targetId={postingId}
+          />
         </Stack>
       </Container>
     </>

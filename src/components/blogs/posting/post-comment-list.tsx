@@ -13,10 +13,23 @@ import dayjs from 'dayjs';
 
 type Props = {
   comments: Comment[];
+  commentCount: number;
+  commentPaging: { offset: number; limit: number };
+  setCommentPaging: ({
+    offset,
+    limit,
+  }: {
+    offset: number;
+    limit: number;
+  }) => void;
 };
 
-
-export default function PostCommentList({ comments }: Props) {
+export default function PostCommentList({
+  comments,
+  commentCount,
+  commentPaging,
+  setCommentPaging,
+}: Props) {
   return (
     <>
       <>
@@ -54,7 +67,14 @@ export default function PostCommentList({ comments }: Props) {
 
       <Pagination
         defaultPage={1}
-        count={comments.length < 5 ? 1 : comments.length / 5}
+        page={commentPaging.limit ? commentPaging.limit / 5 + 1 : 1}
+        onChange={(e) => {
+          setCommentPaging({
+            limit: 5,
+            offset: (Number(e.target.value) - 1) * 5,
+          });
+        }}
+        count={commentCount < 5 ? 1 : commentCount / 5}
         sx={{ my: 5, mx: 'auto' }}
       />
     </>
