@@ -63,7 +63,7 @@ export default function PostCommentItem({
         </Typography>
 
         <Typography variant='caption' sx={{ color: 'text.disabled' }}>
-          {fDate(postedAt)}
+          {fDate(postedAt, 'dd MMM yyyy HH:mm:ss')}
         </Typography>
 
         <Typography variant='body2' sx={{ mt: 1 }}>

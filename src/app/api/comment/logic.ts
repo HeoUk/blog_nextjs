@@ -15,7 +15,7 @@ import dayjs from 'dayjs';
  * 3. Comment 등록
  * 4. Comment Reply 등록
  */
-// TODO: 페이징 처리
+// TODO: 페이징 처리, 소팅
 async function findAllByPostingId(
   target: string,
   blogId: string,
@@ -83,17 +83,14 @@ async function register(blogId: string, targetId: string, message: string) {
     userName: session?.user?.name,
     userIcon64: session?.user?.image,
     comment: message,
-    registerDate: dayjs().format('YYYY-MM-DD'),
+    registerDate: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     reply: [],
   };
 
   try {
-    await client
-      .db('yalloo')
-      .collection('comment')
-      .insertOne(query);
+    await client.db('yalloo').collection('comment').insertOne(query);
 
-      return query;
+    return query;
   } finally {
     await client.close();
   }
