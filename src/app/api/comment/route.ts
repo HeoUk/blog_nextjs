@@ -1,4 +1,4 @@
-import { findAllByPostingId } from '@/app/api/comment/comment';
+import commentLogic from '@/app/api/comment/logic';
 import { toComment } from '@/types/client/comment';
 
 export async function GET(request: Request) {
@@ -7,13 +7,19 @@ export async function GET(request: Request) {
   const blogId = searchParams.get('blog') ?? '';
   const targetId = searchParams.get('id') ?? '';
 
-  const comment = await findAllByPostingId(target, blogId, targetId);
+  const comment = await commentLogic.findAllByPostingId(
+    target,
+    blogId,
+    targetId
+  );
   return Response.json(comment);
 }
 
 export async function POST(request: Request) {
-  const requestBody = request.body;
-  const initComment = toComment(requestBody);
-  // const comment = await findAllByPostingId(target, blogId, targetId);
-  // return Response.json(comment);
+  const requestBody = await request.json();
+
+  const { message, blogId, targetId } = requestBody;
+
+  const results = await commentLogic.register(blogId, targetId, message);
+  return Response.json(results);
 }

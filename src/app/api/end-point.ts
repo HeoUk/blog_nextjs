@@ -23,4 +23,7 @@ export const endpoints = {
     details: '/api/product/details',
     search: '/api/product/search',
   },
+  comment: {
+    register: {url: '/api/comment', method: 'POST'}
+  }
 };

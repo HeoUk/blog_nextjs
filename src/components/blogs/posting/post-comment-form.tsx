@@ -9,21 +9,20 @@ import IconButton from '@mui/material/IconButton';
 import Iconify from '@/components/blogs/iconify';
 import FormProvider, { RHFTextField } from '@/components/blogs/hook-form';
 
-// ----------------------------------------------------------------------
+type Props = {
+  postComment: (message: string) => void;
+};
 
-export default function PostCommentForm() {
+export default function PostCommentForm(props: Props) {
+  //
+  const { postComment } = props;
+
   const CommentSchema = Yup.object().shape({
     comment: Yup.string().required('Comment is required'),
-    name: Yup.string().required('Name is required'),
-    email: Yup.string()
-      .required('Email is required')
-      .email('Email must be a valid email address'),
   });
 
   const defaultValues = {
     comment: '',
-    name: '',
-    email: '',
   };
 
   const methods = useForm({
@@ -41,12 +40,11 @@ export default function PostCommentForm() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      console.info('DATA', data);
+      postComment(data.comment);
     } catch (error) {
       console.error(error);
     }
   });
-
   return (
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Stack spacing={3}>

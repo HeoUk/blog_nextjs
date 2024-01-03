@@ -6,7 +6,7 @@
  */
 import { useMemo } from 'react';
 // utils
-import { endpoints } from '@/api/end-point';
+import { endpoints } from '@/app/api/end-point';
 // types
 import { Posting } from '@/types/client/posting';
 

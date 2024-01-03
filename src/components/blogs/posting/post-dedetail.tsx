@@ -50,37 +50,24 @@ type Props = {
 };
 
 export default function PostDetail(props: Props) {
-  //
+  /** PROPS */
   const { blogId, postingId, posting, comments } = props;
 
-  // const [posting, setPosting] = useState({} as Posting);
-  // const [postingLoading, setPostingLoading] = useState(true);
+  /** STATE */
   const [recentPosting, setRecentPosting] = useState([] as Posting[]);
   const [recentPostingLoading, setRecentPostingLoading] = useState(true);
 
-  // const postingDetailHook = fetchPostingDetail(
-  //   blogId,
-  //   postingId
-  // );
-
+  /** HOOK */
   const recentPostingsHook = fetchRecentPostings(blogId);
   const commentsHook = fetchComments(blogId, postingId);
 
+  /** EFFECTS */
   useEffect(() => {
-    // postingDetailHook.then((postingDetail) => {
-    //   setPosting(postingDetail);
-    //   setPostingLoading(false);
-    // });
-
     recentPostingsHook.then((posting) => {
       setRecentPosting(posting);
       setRecentPostingLoading(false);
     });
   }, []);
-
-  // const { post, postError, postLoading } = useGetPost(title);
-
-  // const { latestPosts, latestPostsLoading } = useGetLatestPosts(title);
 
   const renderSkeleton = <PostDetailsSkeleton />;
 
@@ -198,7 +185,7 @@ export default function PostDetail(props: Props) {
             </Typography>
           </Stack>
 
-          <DefaultComment comments={comments} />
+          <DefaultComment comments={comments} blogId={blogId} target='posting' targetId={postingId} />
         </Stack>
       </Container>
     </>
