@@ -38,8 +38,8 @@ async function findAllByPostingId(
       .db('yalloo')
       .collection('comment')
       .find<Comment>(query, { sort: { registerDate: -1 } })
-      // .skip(offset)
-      // .limit(limit)
+      .skip(offset)
+      .limit(limit)
       .toArray();
     console.log(result);
     return result ? result : [];

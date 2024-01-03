@@ -8,6 +8,7 @@ import PostCommentItem from './post-comment-item';
 // utils
 import { fDate } from '@/utils/format-time';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -30,6 +31,17 @@ export default function PostCommentList({
   commentPaging,
   setCommentPaging,
 }: Props) {
+  //
+  const [page, setPage] = useState(1);
+  // commentPaging.limit ? commentPaging.limit / 5 + 1 : 1
+
+  const handleChangePage = (value: number) => {
+    setCommentPaging({
+      limit: 5,
+      offset: (Number(value) - 1) * 5,
+    });
+    setPage(value);
+  };
   return (
     <>
       <>
@@ -66,15 +78,11 @@ export default function PostCommentList({
       </>
 
       <Pagination
-        defaultPage={1}
-        page={commentPaging.limit ? commentPaging.limit / 5 + 1 : 1}
-        onChange={(e) => {
-          setCommentPaging({
-            limit: 5,
-            offset: (Number(e.target.value) - 1) * 5,
-          });
+        page={page}
+        onChange={(event: React.ChangeEvent<unknown>, value: number) => {
+          handleChangePage(value);
         }}
-        count={commentCount < 5 ? 1 : commentCount / 5}
+        count={commentCount < 5 ? 1 : Math.floor(Number(commentCount / 5)) + 1}
         sx={{ my: 5, mx: 'auto' }}
       />
     </>
