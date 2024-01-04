@@ -31,7 +31,7 @@ export const paths = {
   // BLOGS
   blogs: {
     root: `${ROOTS.BLOG}`,
-    myBlog: `${ROOTS.BLOG}/my-blog`,
+    myBlog: `${ROOTS.BLOG}/1`,
     interest: `${ROOTS.BLOG}/interest`,
   },
   //POST

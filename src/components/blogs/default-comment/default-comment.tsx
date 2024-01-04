@@ -1,6 +1,6 @@
 import Divider from '@mui/material/Divider';
-import PostCommentForm from '../posting/post-comment-form';
-import PostCommentList from '../posting/post-comment-list';
+import PostCommentForm from '../posting-detail/post-comment-form';
+import PostCommentList from '../posting-detail/post-comment-list';
 // types
 import { Comment } from '@/types/client/comment';
 import CommentApi from '@/app/api/comment/api';
@@ -8,7 +8,7 @@ import { useEffect, useMemo, useState } from 'react';
 import CommentCountApi from '@/app/api/comment/counts/api';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { fetchComments } from '@/hooks/blog-posting-hook';
+import { fetchComments } from '@/components/blogs/posting-detail/hooks/posting-hook';
 
 type Props = {
   target: string;

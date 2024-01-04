@@ -24,21 +24,21 @@ import Markdown from '@/components/blogs/markdown';
 import EmptyContent from '@/components/blogs/empty-content';
 import CustomBreadcrumbs from '@/components/blogs/custom-breadcrumbs';
 //
-import PostList from '@/components/blogs/posting/post-list';
-import PostCommentList from '@/components/blogs/posting/post-comment-list';
-import PostCommentForm from '@/components/blogs/posting/post-comment-form';
-import PostDetailsHero from '@/components/blogs/posting/post-details-hero';
-import { PostDetailsSkeleton } from '@/components/blogs/posting/post-skeleton';
+import PostList from '@/components/blogs/posting-detail/post-list';
+import PostCommentList from '@/components/blogs/posting-detail/post-comment-list';
+import PostCommentForm from '@/components/blogs/posting-detail/post-comment-form';
+import PostDetailsHero from '@/components/blogs/posting-detail/post-details-hero';
+import { PostDetailsSkeleton } from '@/components/blogs/posting-detail/post-skeleton';
 import { PostingTopper } from '@/components/blogs/posting-topper';
 import {
   fetchComments,
   fetchPostingDetail,
   fetchRecentPostings,
-} from '@/hooks/blog-posting-hook';
+} from '@/components/blogs/posting-detail/hooks/posting-hook';
 import { useEffect, useMemo, useState } from 'react';
 import { Posting } from '@/types/client/posting';
 import { Comment } from '@/types/client/comment';
-import { DefaultComment } from '../default-comment/default-comment';
+import { DefaultComment } from '../../default-comment/default-comment';
 
 // ----------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ type Props = {
   posting: Posting | null;
 };
 
-export default function PostDetail(props: Props) {
+export default function PostDetailPage(props: Props) {
   /** PROPS */
   const { blogId, postingId, posting } = props;
 
@@ -56,10 +56,8 @@ export default function PostDetail(props: Props) {
   const [recentPosting, setRecentPosting] = useState([] as Posting[]);
   const [recentPostingLoading, setRecentPostingLoading] = useState(true);
 
-
   /** HOOK */
   const recentPostingsHook = fetchRecentPostings(blogId);
-
 
   /** EFFECTS */
   useEffect(() => {

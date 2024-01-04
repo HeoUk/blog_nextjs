@@ -1,16 +1,14 @@
-'use client'
+'use client';
 
-import {TagList} from "@/components/blogs/private-blog-list/tag-list";
-import Grid from "@mui/material/Grid/Grid";
+import { TagList } from '@/components/blogs/posting-list/tag-list';
+import Grid from '@mui/material/Grid/Grid';
 
-export const PrivateBlogList = () => {
-
-
+export const PostingListPage = () => {
   //
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={2}>
-        <TagList/>
+        <TagList />
       </Grid>
       <Grid item xs={12} md={8}>
         {/*Search Box */}
@@ -20,5 +18,5 @@ export const PrivateBlogList = () => {
         {/*Index List*/}
       </Grid>
     </Grid>
-  )
-}
+  );
+};
