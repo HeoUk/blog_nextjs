@@ -1,19 +1,19 @@
+import PostingApi from '@/app/api/blog/posting/api';
 import CommentApi from '@/app/api/comment/api';
 
 export async function fetchPostingDetail(blogId: string, postingId: string) {
-  const response = await fetch(
-    `http://localhost:3000/api/blog/posting?blog=${blogId}&posting=${postingId}`,
-    { cache: 'force-cache', next: { revalidate: 3000 } }
-  );
-  return response.json().then((result) => result);
+  const response = await PostingApi.findPostingDetail(blogId, postingId, {
+    cache: 'force-cache',
+    next: { revalidate: 3000 },
+  });
+  return response;
 }
 
 export async function fetchRecentPostings(blogId: string) {
-  const response = await fetch(
-    `http://localhost:3000/api/blog/posting/recent?blog=${blogId}`,
-    { next: { revalidate: 3000 } }
-  );
-  return response.json().then((result) => result);
+  const response = await PostingApi.findAllRecentPostings(blogId, {
+    next: { revalidate: 3000 },
+  });
+  return response;
 }
 
 export async function fetchComments(

@@ -1,3 +1,6 @@
+import { Session } from 'next-auth';
+import { PostingModel } from '../server/posting-model';
+
 export type Posting = {
   blogId: string;
   blogName: string;
@@ -10,7 +13,17 @@ export type Posting = {
   tags: string[];
   readCount: number;
   like: number;
+  likes: string[];
+  hasLiked: boolean;
   registerDate: string;
   modifiedDate: string;
   image64: string;
 };
+
+export function gePostingAsClient(result: PostingModel, session: Session|null) {
+  return {
+    ...result,
+    like: result.likes.length,
+    hasLiked: !!result.likes.find((email) => email === session?.user?.email),
+  };
+}

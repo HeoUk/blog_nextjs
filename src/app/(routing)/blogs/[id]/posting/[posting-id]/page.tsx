@@ -1,5 +1,5 @@
 import PostDetailPage from '@/components/blogs/posting-detail/pages/post-detail-page';
-import { findById } from '@/app/api/blog/posting/posting';
+import PostingLogic from '@/app/api/blog/posting/logic';
 import commentLogic from '@/app/api/comment/logic';
 import { Comment } from '@/types/client/comment';
 
@@ -14,9 +14,11 @@ export default async function Page({
   const blogId = params['id'];
   const postingId = params['posting-id'];
 
-  const posting = await findById(blogId, postingId);
+  const posting = await PostingLogic.findById(blogId, postingId);
 
   return (
-    <PostDetailPage blogId={blogId} postingId={postingId} posting={posting} />
+    <>
+      <PostDetailPage blogId={blogId} postingId={postingId} posting={posting} />
+    </>
   );
 }

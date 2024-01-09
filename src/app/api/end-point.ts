@@ -23,6 +23,13 @@ export const endpoints = {
     details: '/api/product/details',
     search: '/api/product/search',
   },
+  posting: {
+    detail: { url: 'api/blog/posting', method: 'GET'},
+    recent: {
+      findAll: { url: '/api/blog/posting/recent', method: 'GET'}  
+    },
+    update: { url: '/api/blog/posting', method: 'PUT'}
+  },
   comment: {
     register: { url: '/api/comment', method: 'POST' },
     findAll: { url: '/api/comment', method: 'GET' },

@@ -35,10 +35,13 @@ import {
   fetchPostingDetail,
   fetchRecentPostings,
 } from '@/components/blogs/posting-detail/hooks/posting-hook';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Posting } from '@/types/client/posting';
 import { Comment } from '@/types/client/comment';
 import { DefaultComment } from '../../default-comment/default-comment';
+import PostingApi from '@/app/api/blog/posting/api';
+import { getSession } from 'next-auth/react';
+import { debounce } from 'lodash';
 
 // ----------------------------------------------------------------------
 
@@ -49,12 +52,14 @@ type Props = {
 };
 
 export default function PostDetailPage(props: Props) {
+  //
   /** PROPS */
   const { blogId, postingId, posting } = props;
 
   /** STATE */
   const [recentPosting, setRecentPosting] = useState([] as Posting[]);
   const [recentPostingLoading, setRecentPostingLoading] = useState(true);
+  const [postingLike, setPostingLike] = useState(posting?.like ?? 0);
 
   /** HOOK */
   const recentPostingsHook = fetchRecentPostings(blogId);
@@ -66,6 +71,34 @@ export default function PostDetailPage(props: Props) {
       setRecentPostingLoading(false);
     });
   }, []);
+
+  const handleChangeToggleList = (e: any) => {
+    debouncedToggleLike(e);
+  };
+
+  const debouncedToggleLike = useCallback(
+    debounce((value) => {
+      toggleLike(value);
+    }, 1000),
+    [postingLike]
+  );
+
+  /** MEHTHODS */
+  const toggleLike = async (e: any) => {
+    //
+    debugger;
+    const session = await getSession();
+
+    if (e.target.checked) {
+      setPostingLike(postingLike + 1);
+    } else {
+      setPostingLike(postingLike - 1);
+    }
+
+    await PostingApi.updatePosting(blogId, postingId, {
+      likes: session?.user?.email,
+    });
+  };
 
   const renderSkeleton = <PostDetailsSkeleton />;
 
@@ -147,19 +180,19 @@ export default function PostDetailPage(props: Props) {
                 <Chip key={tag} label={tag} variant='soft' />
               ))}
             </Stack>
-
             <Stack direction='row' alignItems='center'>
               <FormControlLabel
                 control={
                   <Checkbox
-                    defaultChecked
+                    defaultChecked={posting.hasLiked}
                     size='small'
                     color='error'
                     icon={<Iconify icon='solar:heart-bold' />}
                     checkedIcon={<Iconify icon='solar:heart-bold' />}
+                    onChange={handleChangeToggleList}
                   />
                 }
-                label={fShortenNumber(posting.like)}
+                label={fShortenNumber(postingLike)}
                 sx={{ mr: 1 }}
               />
 

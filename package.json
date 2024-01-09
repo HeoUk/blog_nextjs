@@ -24,6 +24,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.12.21",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^2.15.0",
     "moment": "^2.29.4",
     "mongodb": "^6.2.0",

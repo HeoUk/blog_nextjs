@@ -41,7 +41,7 @@ async function findAllByPostingId(
       .skip(offset)
       .limit(limit)
       .toArray();
-    console.log(result);
+  
     return result ? result : [];
   } finally {
     await client.close();
