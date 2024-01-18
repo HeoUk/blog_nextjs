@@ -1,4 +1,4 @@
-import { getClient } from '@/_db/mongodb';
+import {createCollection, getClient} from '@/_db/mongodb';
 import { Posting } from '@/types/client/posting';
 
 async function findById(
@@ -28,4 +28,16 @@ async function findById(
   }
 }
 
-export { findById };
+
+async function registerPostingOne (posting: Posting) {
+  const client = await getClient();
+
+  try {
+    await client.db('yalloo').collection('posting')
+        .insertOne(posting, { });
+  } finally {
+    await client.close();
+  }
+}
+
+export { findById,  registerPostingOne};
