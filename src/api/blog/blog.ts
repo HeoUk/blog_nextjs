@@ -11,6 +11,7 @@ import { endpoints } from '@/app/api/end-point';
 import { Posting } from '@/types/client/posting';
 
 // ----------------------------------------------------------------------
+//
 
 export function useGetPosts() {
   const URL = endpoints.post.list;
